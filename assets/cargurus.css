@@ -19,10 +19,12 @@
   background: var(--cargurus-bg-light);
 }
 
-/* Case study hero - darker background, no border */
-.hero-image-container.case-study-hero-cg {
+/* Case study hero: use same work-preview wrapper as index.html, always show darker/hover state */
+.work-preview.cargurus.case-study-hero {
   background: #7CB6D7;
-  border: none;
+  border-color: #0578BB;
+  box-shadow: var(--shadow-medium);
+  cursor: default;
 }
 
 /* Override problem icon sizing for CarGurus */
@@ -364,6 +366,15 @@
   margin-left: auto;
 }
 
+/* Solution section CG thumbnails: top-aligned, bottom cropped */
+.solution-layout .solution-img-cg {
+  width: clamp(200px, 30vw, 250px);
+  height: 380px;
+  min-width: 200px;
+  object-fit: cover;
+  object-position: top center;
+}
+
 /* Solution image grid styling (for other sections) */
 .solution-grid-frame {
   width: 100%;
@@ -435,6 +446,10 @@
   
   .solution-img {
     max-width: 150px;
+  }
+  .solution-layout .solution-img-cg {
+    width: 150px;
+    height: 260px;
   }
   .solution-bullets li {
     display: none;

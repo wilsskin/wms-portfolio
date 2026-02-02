@@ -680,6 +680,9 @@ h1.about {
 /* CarGurus: 3 equal columns - detect when wrapper contains thumbnail-image-3 */
 .thumbnail-wrapper:has(.thumbnail-image-3) {
   grid-template-columns: repeat(3, 1fr);
+  grid-auto-rows: 1fr;
+  align-items: stretch;
+  align-content: stretch;
 }
 
 /* Individual thumbnail images - fill grid columns, maintain natural aspect ratios */
@@ -710,7 +713,13 @@ h1.about {
 }
 
 .thumbnail-image-3 {
-  aspect-ratio: 774 / 1329;
+  width: 100%;
+  height: 100% !important;
+  min-height: 0; /* allow grid item to shrink */
+  max-height: none;
+  object-fit: cover;
+  object-position: top center;
+  align-self: stretch;
 }
 
 /* Image-specific styling - border radius */
