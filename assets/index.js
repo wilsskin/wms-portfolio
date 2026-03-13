@@ -97,4 +97,13 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     });
   }
+
+  // Hero image: tap to reveal on small screens (image stays revealed)
+  const heroImageWrap = document.getElementById('heroImageWrap');
+  if (heroImageWrap && !window.__heroTapRevealInit) {
+    window.__heroTapRevealInit = true;
+    heroImageWrap.addEventListener('click', function() {
+      if (window.innerWidth <= 480) this.classList.add('revealed');
+    });
+  }
 });

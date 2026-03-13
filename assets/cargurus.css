@@ -22,7 +22,7 @@
 /* Case study hero: use same work-preview wrapper as index.html, always show darker/hover state */
 .work-preview.cargurus.case-study-hero {
   background: #7CB6D7;
-  border-color: #0578BB;
+  border: none;
   box-shadow: var(--shadow-medium);
   cursor: default;
 }
@@ -37,6 +37,10 @@
   width: 100%;
   height: 100%;
   object-fit: contain;
+}
+
+#problem {
+  padding-bottom: 32px;
 }
 
 /* Old vs New Calculator comparison */
@@ -99,7 +103,7 @@
   .calc-compare-row { gap: 12px; }
   .calc-frame { max-width: 42vw; }
   .calc-frame.old { max-width: calc(42vw * 0.927); }
-  .calc-note { max-width: 220px; font-weight: 500; font-size: 12px; }
+  .calc-note { max-width: 220px; font-weight: 500; font-size: var(--type-size-meta); }
 }
 
 @media (max-width: 500px) {
@@ -107,7 +111,7 @@
   .calc-compare-row { gap: 10px; }
   .calc-frame { max-width: 40vw; }
   .calc-frame.old { max-width: calc(40vw * 0.927); }
-  .calc-note { max-width: 120px; font-size: 12px; }
+  .calc-note { max-width: 120px; font-size: var(--type-size-meta); }
 }
 
 .product-showcase-image {
@@ -163,11 +167,11 @@
 }
 
 .image-caption {
-  font-size: 14px;
+  font-size: var(--type-size-meta);
   color: #727272;
   margin-top: 8px;
   text-align: left;
-  font-weight: 350;
+  font-weight: 400;
 }
 
 .image-caption-full {
@@ -178,7 +182,7 @@
 
 /* Goals container */
 .goals-container {
-  max-width: 600px;
+  max-width: 515px;
   background-color: #F0F0F0;
   border: 1px solid #EBEBEB;
   padding: 32px;
@@ -333,8 +337,8 @@
 }
 
 .solution-bullets li {
-  font-size: 16px;
-  font-weight: 350;
+  font-size: var(--type-size-body);
+  font-weight: 400;
   color: #000000;
   line-height: 1.5;
   margin-bottom: 8px;
@@ -347,7 +351,7 @@
   position: absolute;
   left: 0;
   color: #000000;
-  font-weight: 350;
+  font-weight: 400;
 }
 
 .solution-bullets li:last-child {
@@ -405,7 +409,7 @@
 
 .solution-caption {
   font-size: var(--type-size-meta);
-  font-weight: 350;
+  font-weight: 400;
   color: #000;
   margin-top: 8px;
   text-align: left;
@@ -505,7 +509,7 @@
   padding: clamp(16px, 4vw, 32px) clamp(16px, 4vw, 32px);
   /* left-aligned within the container */
   margin-top: 32px;
-  max-width: 600px;
+  max-width: 515px;
 }
 
 .research-quote .quote-text {
@@ -520,7 +524,7 @@
 
 .research-quote .quote-attrib {
   color: #727272;
-  font-weight: 350;
+  font-weight: 400;
   font-size: var(--type-size-meta);
   margin: 16px 0 0;
   line-height: 1.33;
@@ -581,7 +585,7 @@
 }
 
 .comp-text {
-  font-weight: 350;
+  font-weight: 400;
   font-size: var(--type-size-body);
   line-height: 1.5;
   color: var(--cargurus-text-light);
@@ -600,7 +604,7 @@
 .comp-item { display: flex; flex-direction: column; gap: 4px; }
 
 .comp-item-title {
-  font-weight: 600;
+  font-weight: 500;
   font-size: var(--type-size-body);
   line-height: 1.5;
   color: #000000;
@@ -647,7 +651,7 @@
   }
   .comp-item-desc { display: none; }
   .comp-item-title { font-size: var(--type-size-meta); font-weight: 500; }
-  .comp-accent {font-weight: 600; }
+  .comp-accent {font-weight: 500; }
   .comp-image {
     max-width: clamp(250px, 65vw, 350px); }
   .comp-row {gap: 32px; }
