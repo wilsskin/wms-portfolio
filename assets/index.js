@@ -67,19 +67,16 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Logo hover (desktop only). Guard against duplicate listeners
+  // Logo hover (desktop side-nav only). Guard against duplicate listeners
   if (!window.__logoHoverInit) {
     window.__logoHoverInit = true;
-    const logo = document.querySelector('.site-header .logo img');
-    if (logo && window.innerWidth > 480) {
+    const logo = document.querySelector('.side-nav-logo img');
+    if (logo) {
       logo.addEventListener('mouseenter', () => {
         logo.style.transform = 'rotate(10deg)';
       });
       logo.addEventListener('mouseleave', () => {
         logo.style.transform = 'rotate(0deg)';
-      });
-      window.addEventListener('resize', () => {
-        if (window.innerWidth <= 480) logo.style.transform = 'rotate(0deg)';
       });
     }
   }
@@ -98,12 +95,14 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Hero image: tap to reveal on small screens (image stays revealed)
+  // Hero image: tap to toggle color reveal on mobile/tablet (≤1032px)
   const heroImageWrap = document.getElementById('heroImageWrap');
   if (heroImageWrap && !window.__heroTapRevealInit) {
     window.__heroTapRevealInit = true;
     heroImageWrap.addEventListener('click', function() {
-      if (window.innerWidth <= 480) this.classList.add('revealed');
+      if (window.innerWidth <= 1032) {
+        this.classList.toggle('hero-image--active');
+      }
     });
   }
 });

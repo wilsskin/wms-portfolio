@@ -5,8 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Built a new e-commerce platform for Bodega Bay Lavender.">
   <title>Bodega Bay | Wilson Skinner</title>
-  <link rel="icon" type="image/png" href="../assets/media/favicon-light.png" media="(prefers-color-scheme: light)">
-  <link rel="icon" type="image/png" href="../assets/media/favicon-dark.png" media="(prefers-color-scheme: dark)">
+  <link rel="icon" type="image/png" href="../assets/media/icons/favicon-light.png" media="(prefers-color-scheme: light)">
+  <link rel="icon" type="image/png" href="../assets/media/icons/favicon-dark.png" media="(prefers-color-scheme: dark)">
   <link rel="stylesheet" href="../assets/style.css">
   <link rel="stylesheet" href="../assets/jumbo.css">
   <link rel="stylesheet" href="../assets/bodegabay.css">
@@ -29,25 +29,39 @@
 </script>
 </head>
 <body>
+  <!-- Side navigation (desktop, >1032px) -->
+  <nav class="side-nav" aria-label="Main navigation">
+    <a href="/" class="side-nav-logo" aria-label="Home">
+      <img src="../assets/media/icons/logo.png" alt="Wilson Skinner logo" width="28" height="28" />
+    </a>
+    <div class="side-nav-links">
+      <a href="/" class="side-nav-link active">Work</a>
+      <a href="/about" class="side-nav-link">About</a>
+      <a href="#" class="side-nav-link" data-resume-link>Resume</a>
+    </div>
+    <div class="side-nav-sections">
+      <span class="side-nav-pill">BODEGA BAY</span>
+      <a href="#hero" class="side-nav-section-link" data-section="hero">Context</a>
+      <a href="#problem" class="side-nav-section-link" data-section="problem">Problem</a>
+      <a href="#goal" class="side-nav-section-link" data-section="goal">Goal</a>
+      <a href="#solution" class="side-nav-section-link" data-section="solution">Solution</a>
+      <a href="#process" class="side-nav-section-link" data-section="process">Process</a>
+    </div>
+  </nav>
+
+  <!-- Mobile header (≤1032px) -->
   <header class="site-header">
     <div class="container header-inner">
-      <!-- header/logo -->
       <a href="/" class="logo" aria-label="Home">
-        <img src="../assets/media/logo.png" alt="Wilson Skinner logo"/>
+        <img src="../assets/media/icons/logo.png" alt="Wilson Skinner logo"/>
       </a>
-
-      <!-- desktop nav -->
-      <nav class="site-nav">
-        <ul>
-          <li><a href="/">Work</a></li>
-          <li><a href="/about">About</a></li>
-          <li><a data-resume-link href="#">Resume</a></li>
-        </ul>
+      <nav class="header-nav">
+        <a href="/" class="header-nav-link">Work</a>
+        <a href="/about" class="header-nav-link">About</a>
+        <a href="#" class="header-nav-link" data-resume-link>Resume</a>
       </nav>
-
-      <!-- mobile menu button -->
       <button class="hamburger" aria-label="Menu" onclick="toggleMobileMenu()">
-        <img src="../assets/media/hamburger.svg" alt="Menu icon"/>
+        <img src="../assets/media/icons/hamburger.svg" alt="Menu icon"/>
       </button>
     </div>
   </header>
@@ -56,7 +70,7 @@
   <div class="mobile-menu-overlay" id="mobileMenuOverlay">
     <div class="mobile-menu-content">
       <button class="mobile-menu-close" onclick="toggleMobileMenu()" aria-label="Close menu">
-        <img src="../assets/media/cross.svg" alt="Close menu icon"/>
+        <img src="../assets/media/icons/cross.svg" alt="Close menu icon"/>
       </button>
       <nav>
         <ul class="mobile-menu-nav">
@@ -70,24 +84,6 @@
 
   <!-- Page Layout Wrapper -->
   <div class="page-layout-wrapper">
-    <!-- Sidebar Navigation -->
-    <aside class="sidebar-nav">
-      <div class="sidebar-content">
-        <a href="/" class="back-link">
-          <span class="back-arrow">←</span> Back
-        </a>
-        <nav class="page-nav">
-          <ul>
-            <li><a href="#hero" class="nav-link" data-section="hero">Context</a></li>
-            <li><a href="#problem" class="nav-link" data-section="problem">Problem</a></li>
-            <li><a href="#goal" class="nav-link" data-section="goal">Goal</a></li>
-            <li><a href="#solution" class="nav-link" data-section="solution">Solution</a></li>
-            <li><a href="#process" class="nav-link" data-section="process">Process</a></li>
-          </ul>
-        </nav>
-      </div>
-    </aside>
-
     <!-- Main Content -->
     <main class="main-content">
     <!-- Headline Section -->
@@ -101,7 +97,7 @@
     </section>
 
     <!-- Hero Image Section -->
-    <section id="hero" class="hero-image-section">
+    <section id="hero" class="hero-image-section page-hero">
       <div class="container">
         <div class="hero-image-container case-study-hero">
           <div class="thumbnail-wrapper">
@@ -116,9 +112,9 @@
     <section class="summary-section">
       <div class="container">
         <h2 class="section-title">CONTEXT</h2>
-        <h3 class="process-subtitle">Designed and shipped a new store for a lavender ranch</h3>
+        <h3 class="process-subtitle">Designed and shipped new store for a lavender ranch</h3>
         <p class="section-text">
-          As the sole contributor, I rebuilt the platform to improve brand storytelling and user trust, increasing 2025 holiday sales by 400%.
+          I rebuilt the platform to improve brand storytelling and user trust, increasing 2025 holiday sales by 400%.
         </p>
         <p class="section-text" style="margin-top: 16px;">
           Bodega Bay Lavender is a family-owned ranch in California that grows and distills lavender to create a variety of wellness products. The startup primarily relied on in-person revenue channels and lacked a strong online store so I was commissioned to create a more effective Shopify e-commerce platform. 
@@ -171,13 +167,13 @@
       <div class="container">
         <div class="comparison-container">
           <div class="comparison-column">
-            <h3 class="comparison-title">Before: <span style="color: #727272;">no value proposition or storytelling</span></h3>
+            <h3 class="comparison-title">Before: <span style="color: #6F6F6F;">no value proposition or storytelling</span></h3>
             <div class="comparison-image bbl-comparison before-image">
               <img src="../assets/media/bodegabay/bbl-before.webp" alt="Screenshot of the previous Bodega Bay Lavender homepage with minimal messaging and little product storytelling" class="comparison-img bbl-comparison-img img-block"/>
             </div>
           </div>
           <div class="comparison-column">
-            <h3 class="comparison-title">After: <span style="color: #727272;">highlights lavender benefits and products</span></h3>
+            <h3 class="comparison-title">After: <span style="color: #6F6F6F;">highlights lavender benefits and products</span></h3>
             <div class="comparison-image bbl-comparison after-image">
               <img src="../assets/media/bodegabay/bbl-after.webp" alt="Screenshot of the redesigned Bodega Bay Lavender homepage featuring lavender benefits, product categories, and calls to shop" class="comparison-img bbl-comparison-img img-block"/>
             </div>
@@ -231,7 +227,7 @@
     <section class="goals-section">
       <div class="container">
         <div class="goals-container">
-          <h3 class="process-subtitle" style="color: #727272;">How might we gain shopper trust and encourage them to purchase lavender products from Bodega Bay Lavender?
+          <h3 class="process-subtitle" style="color: #6F6F6F;">How might we gain shopper trust and encourage them to purchase lavender products from Bodega Bay Lavender?
           </h3>
         </div>
       </div>
@@ -348,95 +344,7 @@
   </footer>
 
   <script>
-    // Sidebar navigation functionality
-    function initSidebarNav() {
-      const navLinks = document.querySelectorAll('.nav-link');
-      const sections = document.querySelectorAll('section[id]');
-      
-      // Smooth scrolling for navigation links
-      navLinks.forEach(link => {
-        link.addEventListener('click', (e) => {
-          e.preventDefault();
-          const targetId = link.getAttribute('href').substring(1);
-          const targetSection = document.getElementById(targetId);
-          
-          if (targetSection) {
-            targetSection.scrollIntoView({
-              behavior: 'smooth',
-              block: 'start'
-            });
-          }
-        });
-      });
-
-      // Update active section based on scroll position
-      function updateActiveSection() {
-        const scrollPosition = window.scrollY + 100;
-        const isAtBottom = scrollPosition + window.innerHeight >= document.documentElement.scrollHeight - 50;
-        
-        // Handle bottom of page case
-        if (isAtBottom) {
-          navLinks.forEach(link => link.classList.remove('active'));
-          document.querySelector('[href="#takeaways"]')?.classList.add('active');
-          return;
-        }
-        
-        // Handle top of page case - always highlight hero when at top
-        if (scrollPosition < 200) {
-          navLinks.forEach(link => link.classList.remove('active'));
-          document.querySelector('[href="#hero"]')?.classList.add('active');
-          return;
-        }
-        
-        // Find current section using proper boundaries
-        let currentSection = null;
-        
-        for (let i = 0; i < sections.length; i++) {
-          const section = sections[i];
-          const sectionTop = section.offsetTop;
-          
-          // Define section boundaries: from this section's top to the next section's top
-          let sectionBottom;
-          if (i < sections.length - 1) {
-            // Use the start of the next section as the end of this section
-            sectionBottom = sections[i + 1].offsetTop;
-          } else {
-            // For the last section, use its actual bottom
-            sectionBottom = sectionTop + section.offsetHeight;
-          }
-          
-          // Check if we're within this section's boundaries
-          if (scrollPosition >= sectionTop && scrollPosition < sectionBottom) {
-            currentSection = section;
-            break;
-          }
-        }
-        
-        // Update active state
-        navLinks.forEach(link => link.classList.remove('active'));
-        if (currentSection) {
-          document.querySelector(`[href="#${currentSection.id}"]`)?.classList.add('active');
-        }
-      }
-
-      // Listen for scroll events
-      window.addEventListener('scroll', updateActiveSection);
-      
-      // Initial call to set active section
-      updateActiveSection();
-      
-      // Set hero as active by default if no section is active
-      const activeLink = document.querySelector('.nav-link.active');
-      if (!activeLink) {
-        const heroLink = document.querySelector('[href="#hero"]');
-        if (heroLink) {
-          heroLink.classList.add('active');
-        }
-      }
-    }
-
-    // Initialize sidebar navigation when DOM is loaded
-    document.addEventListener('DOMContentLoaded', initSidebarNav);
+    // Sidebar nav handled by case-nav.js
 
     // Video autoplay with delay when visible
     const videoObserver = new IntersectionObserver(entries => {
@@ -450,22 +358,7 @@
     
     document.querySelectorAll('.solution-video').forEach(video => videoObserver.observe(video));
 
-    // Logo hover rotation
-    const logo = document.querySelector('.site-header .logo img');
-    if (logo && window.innerWidth > 480) {
-      logo.addEventListener('mouseenter', () => {
-        logo.style.transform = 'rotate(12deg)';
-      });
-      
-      logo.addEventListener('mouseleave', () => {
-        logo.style.transform = 'rotate(0deg)';
-      });
-      
-      window.addEventListener('resize', () => {
-        if (window.innerWidth <= 480) logo.style.transform = 'rotate(0deg)';
-      });
-    }
+    // Logo hover handled by index.js on .side-nav-logo
   </script>
 </body>
-</html>
 </html>

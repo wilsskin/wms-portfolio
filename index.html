@@ -6,11 +6,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <meta name="description" content="Wilson designs and builds crisp consumer software from end-to-end. Previously designed at startups and CarGurus.">
   <title>Wilson Skinner</title>
-  <link rel="icon" type="image/png" href="assets/media/favicon-light.png" media="(prefers-color-scheme: light)">
-  <link rel="icon" type="image/png" href="assets/media/favicon-dark.png" media="(prefers-color-scheme: dark)">
+  <link rel="icon" type="image/png" href="assets/media/icons/favicon-light.png" media="(prefers-color-scheme: light)">
+  <link rel="icon" type="image/png" href="assets/media/icons/favicon-dark.png" media="(prefers-color-scheme: dark)">
   <link rel="preload" as="image" href="assets/media/about/logo-bodegabay.png">
   <link rel="preload" as="image" href="assets/media/about/logo-cargurus.png">
-  <link rel="preload" as="image" href="assets/media/index/JC.png">
   <link rel="preload" as="image" href="assets/media/index/hero-img.webp">
   <!-- Preload case study thumbnail images to prevent flashing -->
   <link rel="preload" as="image" href="assets/media/bodegabay/bbl-thumbnail1.png">
@@ -39,25 +38,31 @@
 </script>
 </head>
 <body>
+  <!-- Side navigation (desktop, >1032px) -->
+  <nav class="side-nav" aria-label="Main navigation">
+    <a href="/" class="side-nav-logo" aria-label="Home">
+      <img src="assets/media/icons/logo.png" alt="Wilson Skinner logo" width="28" height="28" />
+    </a>
+    <div class="side-nav-links">
+      <a href="/" class="side-nav-link active">Work</a>
+      <a href="/about" class="side-nav-link">About</a>
+      <a href="#" class="side-nav-link" data-resume-link>Resume</a>
+    </div>
+  </nav>
+
+  <!-- Mobile header (≤1032px) -->
   <header class="site-header">
     <div class="container header-inner">
-      <!-- header/logo -->
       <a href="/" class="logo" aria-label="Home">
-        <img src="assets/media/logo.png" alt="Wilson Skinner logo"/>
+        <img src="assets/media/icons/logo.png" alt="Wilson Skinner logo"/>
       </a>
-
-      <!-- desktop nav -->
-      <nav class="site-nav">
-        <ul>
-          <li><a href="/" class="active">Work</a></li>
-          <li><a href="/about">About</a></li>
-          <li><a data-resume-link href="#">Resume</a></li>
-        </ul>
+      <nav class="header-nav">
+        <a href="/" class="header-nav-link active">Work</a>
+        <a href="/about" class="header-nav-link">About</a>
+        <a href="#" class="header-nav-link" data-resume-link>Resume</a>
       </nav>
-
-      <!-- mobile menu button -->
       <button class="hamburger" aria-label="Menu" onclick="toggleMobileMenu()">
-        <img src="assets/media/hamburger.svg" alt="Menu icon"/>
+        <img src="assets/media/icons/hamburger.svg" alt="Menu icon"/>
       </button>
     </div>
   </header>
@@ -66,7 +71,7 @@
   <div class="mobile-menu-overlay" id="mobileMenuOverlay">
     <div class="mobile-menu-content">
       <button class="mobile-menu-close" onclick="toggleMobileMenu()" aria-label="Close menu">
-        <img src="assets/media/cross.svg" alt="Close menu icon"/>
+        <img src="assets/media/icons/cross.svg" alt="Close menu icon"/>
       </button>
       <nav>
         <ul class="mobile-menu-nav">
@@ -79,15 +84,14 @@
   </div>
 
   <main>
-    <section class="hero">
+    <section class="hero page-hero">
       <div class="container">
         <div class="hero-inner">
-          <h1 class="hero-headline">Wilson is a product designer who builds software from 0→1. <span class="hero-subtext">Previously at startups and CarGurus.</span></h1>
           <div class="hero-image-wrap" id="heroImageWrap">
             <img src="assets/media/index/hero-img.webp" alt="a beautiful mountain range captured by Wilson at 6:07am" class="hero-image" width="616" height="231" loading="eager" decoding="async" />
             <p class="hero-caption">worth the 3am.</p>
           </div>
-          <p class="hero-tap-hint" aria-hidden="true">Tap to reveal</p>
+          <h1 class="hero-headline">Wilson is a product designer who builds software from 0→1. <span class="hero-subtext">Previously at startups and CarGurus.</span></h1>
         </div>
       </div>
     </section>
@@ -101,7 +105,7 @@
             <span class="thumbnail-company-name">CarGurus</span>
           </div>
           <div class="thumbnail-description-main">
-            <p class="process-subtitle">Built a finance calculator to predict out-the-door pricing</p>
+            <p class="process-subtitle">Built a cost calculator to predict out-the-door pricing</p>
             <p class="thumbnail-meta">Designed new on-the-lot mobile features to help 45M+ monthly buyers navigate hidden fees and dealer negotiations.</p>
           </div>
         </div>
@@ -127,8 +131,8 @@
             <span class="thumbnail-company-name">Bodega Bay Lavender</span>
           </div>
           <div class="thumbnail-description-main">
-            <p class="process-subtitle">Designed and shipped a new store for a lavender ranch</p>
-            <p class="thumbnail-meta">As the sole contributor, I rebuilt the platform to improve brand storytelling and user trust, increasing 2025 holiday sales by 400%.</p>
+            <p class="process-subtitle">Designed and shipped new store for a lavender ranch</p>
+            <p class="thumbnail-meta">I rebuilt the platform to improve brand storytelling and user trust, increasing 2025 holiday sales by 400%.</p>
           </div>
         </div>
         <a href="/bodegabay" class="work-preview-link">
@@ -181,7 +185,7 @@
             <a href="https://cartoon-gen1.vercel.app/" class="playground-card-link" target="_blank" rel="noopener noreferrer">
               <article class="playground-card">
                 <div class="playground-card-image playground-card-thumb">
-                  <img src="assets/media/playground/cartoongen-img.webp" alt="CartoonGen - political cartoons from news headlines" width="2400" height="1350" loading="lazy" />
+                  <img src="assets/media/index/cartoongen-img.webp" alt="CartoonGen - political cartoons from news headlines" width="2400" height="1350" loading="lazy" />
                 </div>
                 <div class="playground-card-text">
                   <p class="playground-card-title">CartoonGen</p>
@@ -192,7 +196,7 @@
             <a href="https://www.figma.com/make/LGPcCOzni7TuS7ygp6Cbmh/HBO-Max-2025-Rewind-%7C-Wilson-Skinner?fullscreen=1&t=OoBA2UL3SeRhE41h-1" class="playground-card-link" target="_blank" rel="noopener noreferrer">
               <article class="playground-card">
                 <div class="playground-card-image playground-card-thumb">
-                  <img src="assets/media/playground/hbo-img.webp" alt="HBO 2025 Rewind mobile experience" width="2400" height="1350" loading="lazy" />
+                  <img src="assets/media/index/hbo-img.webp" alt="HBO 2025 Rewind mobile experience" width="2400" height="1350" loading="lazy" />
                 </div>
                 <div class="playground-card-text">
                   <p class="playground-card-title">HBO Rewind </p>
@@ -205,7 +209,7 @@
             <a href="https://wilsskin.github.io/craigslist-hqo/" class="playground-card-link" target="_blank" rel="noopener noreferrer">
               <article class="playground-card">
                 <div class="playground-card-image playground-card-thumb">
-                  <img src="assets/media/playground/craigslist-img.webp" alt="Craigslist Redesign homepage" width="2400" height="1350" loading="lazy" />
+                  <img src="assets/media/index/craigslist-img.webp" alt="Craigslist Redesign homepage" width="2400" height="1350" loading="lazy" />
                 </div>
                 <div class="playground-card-text">
                   <p class="playground-card-title">Craigslist Homepage</p>
@@ -236,21 +240,7 @@
   </footer>
 
   <script>
-    // Logo hover rotation
-    const logo = document.querySelector('.site-header .logo img');
-    if (logo && window.innerWidth > 480) {
-      logo.addEventListener('mouseenter', () => {
-        logo.style.transform = 'rotate(10deg)';
-      });
-      
-      logo.addEventListener('mouseleave', () => {
-        logo.style.transform = 'rotate(0deg)';
-      });
-      
-      window.addEventListener('resize', () => {
-        if (window.innerWidth <= 480) logo.style.transform = 'rotate(0deg)';
-      });
-    }
+    // Logo hover handled by index.js on .side-nav-logo
 
     // Status pill click-to-toggle for mobile (<=480px)
     (function() {

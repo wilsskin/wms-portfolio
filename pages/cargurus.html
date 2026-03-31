@@ -5,8 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Prototyped a finance calculator to predict out-the-door pricing for CarGurus.">
   <title>CarGurus | Wilson Skinner</title>
-  <link rel="icon" type="image/png" href="../assets/media/favicon-light.png" media="(prefers-color-scheme: light)">
-  <link rel="icon" type="image/png" href="../assets/media/favicon-dark.png" media="(prefers-color-scheme: dark)">
+  <link rel="icon" type="image/png" href="../assets/media/icons/favicon-light.png" media="(prefers-color-scheme: light)">
+  <link rel="icon" type="image/png" href="../assets/media/icons/favicon-dark.png" media="(prefers-color-scheme: dark)">
   <link rel="stylesheet" href="../assets/style.css">
   <link rel="stylesheet" href="../assets/jumbo.css">
   <link rel="stylesheet" href="../assets/cargurus.css">
@@ -29,25 +29,39 @@
 </script>
 </head>
 <body>
+  <!-- Side navigation (desktop, >1032px) -->
+  <nav class="side-nav" aria-label="Main navigation">
+    <a href="/" class="side-nav-logo" aria-label="Home">
+      <img src="../assets/media/icons/logo.png" alt="Wilson Skinner logo" width="28" height="28" />
+    </a>
+    <div class="side-nav-links">
+      <a href="/" class="side-nav-link active">Work</a>
+      <a href="/about" class="side-nav-link">About</a>
+      <a href="#" class="side-nav-link" data-resume-link>Resume</a>
+    </div>
+    <div class="side-nav-sections">
+      <span class="side-nav-pill">CARGURUS</span>
+      <a href="#hero" class="side-nav-section-link" data-section="hero">Context</a>
+      <a href="#problem" class="side-nav-section-link" data-section="problem">Problem</a>
+      <a href="#goal" class="side-nav-section-link" data-section="goal">Goal</a>
+      <a href="#solution" class="side-nav-section-link" data-section="solution">Solution</a>
+      <a href="#process" class="side-nav-section-link" data-section="process">Process</a>
+    </div>
+  </nav>
+
+  <!-- Mobile header (≤1032px) -->
   <header class="site-header">
     <div class="container header-inner">
-      <!-- header/logo -->
       <a href="/" class="logo" aria-label="Home">
-        <img src="../assets/media/logo.png" alt="Wilson Skinner logo"/>
+        <img src="../assets/media/icons/logo.png" alt="Wilson Skinner logo"/>
       </a>
-
-      <!-- desktop nav -->
-      <nav class="site-nav">
-        <ul>
-          <li><a href="/">Work</a></li>
-          <li><a href="/about">About</a></li>
-          <li><a data-resume-link href="#">Resume</a></li>
-        </ul>
+      <nav class="header-nav">
+        <a href="/" class="header-nav-link">Work</a>
+        <a href="/about" class="header-nav-link">About</a>
+        <a href="#" class="header-nav-link" data-resume-link>Resume</a>
       </nav>
-
-      <!-- mobile menu button -->
       <button class="hamburger" aria-label="Menu" onclick="toggleMobileMenu()">
-        <img src="../assets/media/hamburger.svg" alt="Menu icon"/>
+        <img src="../assets/media/icons/hamburger.svg" alt="Menu icon"/>
       </button>
     </div>
   </header>
@@ -56,7 +70,7 @@
   <div class="mobile-menu-overlay" id="mobileMenuOverlay">
     <div class="mobile-menu-content">
       <button class="mobile-menu-close" onclick="toggleMobileMenu()" aria-label="Close menu">
-        <img src="../assets/media/cross.svg" alt="Close menu icon"/>
+        <img src="../assets/media/icons/cross.svg" alt="Close menu icon"/>
       </button>
       <nav>
         <ul class="mobile-menu-nav">
@@ -70,24 +84,6 @@
 
   <!-- Page Layout Wrapper -->
   <div class="page-layout-wrapper">
-    <!-- Sidebar Navigation -->
-    <aside class="sidebar-nav">
-      <div class="sidebar-content">
-        <a href="/" class="back-link">
-          <span class="back-arrow">←</span> Back
-        </a>
-        <nav class="page-nav">
-          <ul>
-            <li><a href="#hero" class="nav-link" data-section="hero">Context</a></li>
-            <li><a href="#problem" class="nav-link" data-section="problem">Problem</a></li>
-            <li><a href="#goal" class="nav-link" data-section="goal">Goal</a></li>
-            <li><a href="#solution" class="nav-link" data-section="solution">Solution</a></li>
-            <li><a href="#process" class="nav-link" data-section="process">Process</a></li>
-          </ul>
-        </nav>
-      </div>
-    </aside>
-
     <!-- Main Content -->
     <main class="main-content">
     <!-- Headline Section -->
@@ -99,7 +95,7 @@
     </section>
 
     <!-- Hero Image Section -->
-    <section id="hero" class="hero-image-section">
+    <section id="hero" class="hero-image-section page-hero">
       <div class="container">
         <div class="work-preview cargurus case-study-hero">
           <div class="thumbnail-wrapper">
@@ -115,7 +111,7 @@
     <section class="summary-section">
       <div class="container">
         <h2 class="section-title">CONTEXT</h2>
-        <h3 class="process-subtitle">Built a finance calculator to predict out-the-door pricing</h3>
+        <h3 class="process-subtitle">Built a cost calculator to predict out-the-door pricing</h3>
         <p class="section-text">
           Designed new on-the-lot mobile features to help 45M+ monthly buyers navigate hidden fees and dealer negotiations.
         </p>
@@ -181,11 +177,11 @@
         <div class="calc-compare">
           <div class="calc-compare-row">
             <div class="calc-col">
-              <p class="calc-note">Old: <span style="color: #727272;">generic and simple</span></p>
+              <p class="calc-note">Old: <span style="color: #6F6F6F;">generic and simple</span></p>
               <img src="../assets/media/cargurus/old-calc.webp" alt="CarGurus old calculator" class="calc-frame old img-block"/>
             </div>
             <div class="calc-col">
-              <p class="calc-note">New: <span style="color: #727272;">detailed and customizable</span></p>
+              <p class="calc-note">New: <span style="color: #6F6F6F;">detailed and customizable</span></p>
               <img src="../assets/media/cargurus/new-calc.webp" alt="CarGurus new finance calculator" class="calc-frame img-block"/>
             </div>
           </div>
@@ -238,7 +234,7 @@
     <section class="goals-section">
       <div class="container">
         <div class="goals-container">
-          <h3 class="process-subtitle" style="color: #727272;">How might we improve the CarGurus app experience on the lot without jeopardizing CG's relationship with dealerships?</h3>
+          <h3 class="process-subtitle" style="color: #6F6F6F;">How might we improve the CarGurus app experience on the lot without jeopardizing CG's relationship with dealerships?</h3>
         </div>
       </div>
     </section>
@@ -469,15 +465,15 @@
           <div class="solution-image-grid">
             <div class="solution-item">
               <img src="../assets/media/cargurus/proto-1.webp" alt="CarGurus Deal-O-Meter prototype" class="solution-img" style="opacity: 0.45;"/>
-              <p class="solution-caption" style="color: #727272; text-align: center;">Deal-O-Meter</p>
+              <p class="solution-caption" style="color: #6F6F6F; text-align: center;">Deal-O-Meter</p>
             </div>
             <div class="solution-item">
               <img src="../assets/media/cargurus/proto-2.webp" alt="CarGurus finance calculator prototype" class="solution-img"/>
-              <p class="solution-caption" style="color: #727272; text-align: center;">Finance Calculator</p>
+              <p class="solution-caption" style="color: #6F6F6F; text-align: center;">Finance Calculator</p>
             </div>
             <div class="solution-item">
               <img src="../assets/media/cargurus/proto-3.webp" alt="CarGurus feature comparison prototype" class="solution-img" style="opacity: 0.45;"/>
-              <p class="solution-caption" style="color: #727272; text-align: center;">Estimate Summary</p>
+              <p class="solution-caption" style="color: #6F6F6F; text-align: center;">Estimate Summary</p>
             </div>
           </div>
         </div>
@@ -578,21 +574,7 @@
     
     document.querySelectorAll('.solution-video').forEach(video => videoObserver.observe(video));
 
-    // Logo hover rotation
-    const logo = document.querySelector('.site-header .logo img');
-    if (logo && window.innerWidth > 480) {
-      logo.addEventListener('mouseenter', () => {
-        logo.style.transform = 'rotate(12deg)';
-      });
-      
-      logo.addEventListener('mouseleave', () => {
-        logo.style.transform = 'rotate(0deg)';
-      });
-      
-      window.addEventListener('resize', () => {
-        if (window.innerWidth <= 480) logo.style.transform = 'rotate(0deg)';
-      });
-    }
+    // Logo hover handled by index.js on .side-nav-logo
   </script>
 </body>
 </html>

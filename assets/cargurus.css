@@ -7,7 +7,7 @@
   --cargurus-primary: #0079AF;
   --cargurus-secondary: #046096;
   --cargurus-text-dark: #000000;
-  --cargurus-text-light: #727272;
+  --cargurus-text-light: #6F6F6F;
   --cargurus-bg-light: #55A0CE;
   --cargurus-grey-light: rgba(0, 0, 0, 0.05);
   --cargurus-border: #55A0CE;
@@ -168,7 +168,7 @@
 
 .image-caption {
   font-size: var(--type-size-meta);
-  color: #727272;
+  color: #6F6F6F;
   margin-top: 8px;
   text-align: left;
   font-weight: 400;
@@ -176,13 +176,13 @@
 
 .image-caption-full {
   width: 100%;
-  max-width: 900px;
+  max-width: 768px;
   margin-top: 8px;
 }
 
 /* Goals container */
 .goals-container {
-  max-width: 515px;
+  max-width: 504px;
   background-color: #F0F0F0;
   border: 1px solid #EBEBEB;
   padding: 32px;
@@ -243,7 +243,7 @@
   display: flex;
   justify-content: flex-start;
   gap: 48px;
-  max-width: 900px;
+  max-width: 768px;
 }
 
 .showcase-item {
@@ -310,7 +310,7 @@
   justify-content: space-between;
   gap: clamp(32px, 8vw, 64px);
   width: 100%;
-  max-width: 900px;
+  max-width: 768px;
   padding: clamp(16px, 4vw, 32px) clamp(16px, 4vw, 32px);
   background: #F0F0F0;
   border: 1px solid #EBEBEB;
@@ -382,7 +382,7 @@
 /* Solution image grid styling (for other sections) */
 .solution-grid-frame {
   width: 100%;
-  max-width: 900px;
+  max-width: 768px;
   background: var(--cargurus-grey-light);
   border-radius: 16px;
   padding: clamp(16px, 4vw, 32px) clamp(16px, 4vw, 48px);
@@ -509,11 +509,11 @@
   padding: clamp(16px, 4vw, 32px) clamp(16px, 4vw, 32px);
   /* left-aligned within the container */
   margin-top: 32px;
-  max-width: 515px;
+  max-width: 504px;
 }
 
 .research-quote .quote-text {
-  color: #727272;
+  color: #6F6F6F;
   font-weight: 500;
   font-size: var(--type-size-heading);
   line-height: 1.33;
@@ -523,7 +523,7 @@
 }
 
 .research-quote .quote-attrib {
-  color: #727272;
+  color: #6F6F6F;
   font-weight: 400;
   font-size: var(--type-size-meta);
   margin: 16px 0 0;
@@ -615,14 +615,14 @@
   font-weight: 500;
   font-size: var(--type-size-meta);
   line-height: 1.2;
-  color: #727272;
+  color: #6F6F6F;
   margin: 0;
 }
 
 /* Accent color span for selected titles */
 .comp-accent { color: #0079AF; }
 
-@media (max-width: 948px) {
+@media (max-width: 816px) {
   .comp-row {
     flex-direction: column;
     gap: 48px;

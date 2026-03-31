@@ -10,7 +10,7 @@
   --jumbo-secondary: #007095;
   --jumbo-accent: #32C89E;
   --jumbo-text-dark: #000000;
-  --jumbo-text-light: #727272;
+  --jumbo-text-light: #6F6F6F;
   --jumbo-bg-light: #F0F0F0;
   --jumbo-border: rgba(50, 200, 158, 0.6);
 }
@@ -32,15 +32,17 @@
   font-size: var(--type-size-title);
   line-height: 1.33em;
   color: var(--jumbo-text-dark);
-  max-width: 515px;
+  max-width: 504px;
   margin: 0;
   letter-spacing: -0.025em;
   padding-bottom: 2px;
 }
 
 /* Hero Image Section */
+/* .hero-image-section top/bottom padding handled by .page-hero */
 .hero-image-section {
-  padding: 16px 0 0;
+  padding-right: 0;
+  padding-left: 0;
   background: var(--color-bg);
 }
 
@@ -52,7 +54,7 @@
   overflow: hidden;
   background: #81DBC2;
   cursor: default;
-  max-width: 900px;
+  max-width: 768px;
   width: 100%;
   aspect-ratio: 900 / 475;
   margin-left: auto;
@@ -106,7 +108,7 @@
 
 /* Container narrow utility */
 .container-narrow {
-  max-width: 515px;
+  max-width: 504px;
   margin: 0 auto 0 0;
   padding-top: 32px;
 }
@@ -122,7 +124,7 @@
   justify-content: space-between;
   align-items: flex-start;
   gap: 12px;
-  max-width: 900px;
+  max-width: 768px;
 }
 
 .summary-left {
@@ -130,7 +132,7 @@
   flex-direction: column;
   gap: 24px;
   flex: 1;
-  max-width: 515px;
+  max-width: 504px;
   text-align: left;
 }
 
@@ -208,7 +210,7 @@
   font-weight: 400;
   font-size: var(--type-size-meta);
   line-height: 1.33em;
-  color: #727272;
+  color: #6F6F6F;
   margin: 0;
   padding-bottom: 2px;
 }
@@ -310,7 +312,7 @@
   justify-content: space-between;
   align-items: center;
   gap: 10px;
-  max-width: 900px;
+  max-width: 768px;
 }
 
 .impact-card {
@@ -340,7 +342,7 @@
 }
 
 .impact-detail {
-  color: #727272;
+  color: #6F6F6F;
   font-weight: 400;
 }
 /* Impact cards responsive breakpoint */
@@ -433,8 +435,8 @@
   font-weight: 400;
   font-size: var(--type-size-body);
   line-height: 1.5;
-  color: #727272;
-  max-width: 515px;
+  color: #6F6F6F;
+  max-width: 504px;
   margin: 8px 0 0 0;
 }
 
@@ -479,7 +481,7 @@
   justify-content: space-between;
   align-items: center;
   gap: 10px;
-  max-width: 900px;
+  max-width: 768px;
 }
 
 .problem-card {
@@ -525,7 +527,7 @@
   display: flex;
   justify-content: space-between;
   gap: clamp(24px, 6vw, 64px); /* Responsive gap starting at 64px */
-  max-width: 900px;
+  max-width: 768px;
 }
 
 .showcase-item {
@@ -612,7 +614,7 @@
   display: flex;
   align-items: center;
   gap: 40px;
-  max-width: 900px;
+  max-width: 768px;
 }
 
 .goal-card {
@@ -670,7 +672,7 @@
   background: var(--jumbo-bg-light);
   border: 1px solid #EBEBEB;
   border-radius: 16px;
-  max-width: 900px;
+  max-width: 768px;
 }
 
 .solution-title-wrapper {
@@ -715,7 +717,7 @@
   color: var(--jumbo-text-light);
   margin: 0;
   padding-bottom: 8px;
-  max-width: 515px;
+  max-width: 504px;
 }
 
 .solution-image {
@@ -756,7 +758,7 @@
   justify-content: flex-start;
   align-items: flex-start;
   gap: 16px;
-  max-width: 515px;
+  max-width: 504px;
   width: 100%;
 }
 
@@ -777,7 +779,7 @@
   font-size: var(--type-size-body);
   line-height: 1.5;
   color: var(--jumbo-text-light);
-  max-width: 515px;
+  max-width: 504px;
   margin: 0;
 }
 
@@ -791,7 +793,7 @@
   display: flex;
   justify-content: space-between;
   gap: clamp(24px, 6vw, 64px); /* Responsive gap starting at 64px */
-  max-width: 900px;
+  max-width: 768px;
 }
 
 .research-item {
@@ -838,7 +840,7 @@
 
 .info-arch-img {
   width: 100%;
-  max-width: 900px;
+  max-width: 768px;
   height: 225px;
   object-fit: cover;
   border-radius: 8px;
@@ -867,7 +869,7 @@
   justify-content: space-between;
   align-items: stretch;
   gap: clamp(16px, 4vw, 32px);
-  max-width: 900px;
+  max-width: 768px;
   width: 100%;
   overflow: hidden;
 }
@@ -899,7 +901,7 @@
 .iterations-grid {
   display: flex;
   gap: clamp(8px, 2vw, 16px);
-  max-width: 900px;
+  max-width: 768px;
   padding-top: var(--spacing-medium);
 }
 
@@ -963,7 +965,7 @@
   display: flex;
   align-items: center;
   gap: 33.39px;
-  max-width: 900px;
+  max-width: 768px;
 }
 
 .design-item {
@@ -1017,7 +1019,7 @@
 
 .figma-structure-img {
   width: 100%;
-  max-width: 900px;
+  max-width: 768px;
   height: auto;
   object-fit: contain;
   border-radius: 8px;
@@ -1033,99 +1035,11 @@
   min-height: 100vh;
 }
 
-/* Sidebar Navigation */
-.sidebar-nav {
-  position: fixed;
-  top: 0;
-  /* Fluid calculation: 
-     - 50% centers the main content
-     - 474px is half the main content width (948px/2)
-     - 74px is sidebar width
-     - The gap calculation changes based on viewport:
-       * 1440px+ to 1224px: gap stays 40px, only left margin shrinks
-       * 1224px to 1160px: gap shrinks from 40px to 8px
-       * <1160px: sidebar disappears */
-  left: calc(50% - 474px - 74px - clamp(8px, calc(40px - (1224px - 100vw) * 0.5), 40px));
-  width: 74px;
-  padding-top: 130px; /* Align with main header */
-  z-index: 100;
-  height: fit-content;
-}
-
-.sidebar-content {
-  display: flex;
-  flex-direction: column;
-  gap: 36px;
-}
-
-.back-link {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  font-family: 'Inter', sans-serif;
-  font-weight: 400;
-  font-size: var(--type-size-meta);
-  color: var(--jumbo-text-light);
-  text-decoration: none;
-  transition: color 0.3s ease;
-}
-
-.back-link:hover {
-  color: var(--jumbo-text-dark);
-  font-weight: 500;
-}
-
-.back-arrow {
-  font-size: var(--type-size-body);
-}
-
-.page-nav ul {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-
-.nav-link {
-  font-family: 'Inter', sans-serif;
-  font-weight: 400;
-  font-size: var(--type-size-meta);
-  color: var(--jumbo-text-light);
-  text-decoration: none;
-  transition: color 0.3s ease;
-  display: block;
-  padding: 0;
-}
-
-.nav-link:hover {
-  color: var(--jumbo-text-dark);
-  font-weight: 500;
-}
-
-.nav-link.active {
-  font-weight: 500;
-  color: var(--jumbo-text-dark);
-}
-
 /* Main content */
 .main-content {
-  max-width: 948px;
-  margin: 0 auto; /* Center the main content */
+  max-width: 816px;
+  margin: 0 auto;
   width: 100%;
-}
-
-/* Responsive adjustments - simplified to just handle the breakpoint where sidebar disappears */
-@media (max-width: 1159px) {
-  .sidebar-nav {
-    display: none; /* Hide sidebar on smaller screens */
-  }
-  
-  .main-content {
-    max-width: 948px;
-    margin: 0 auto; /* Center the content */
-  }
 }
 @media (max-width: 700px) {
   .hero-image-container {
