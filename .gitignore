@@ -9,3 +9,4 @@ Thumbs.db
 
 # Node (optional, if you later add npm)
 node_modules/
+.gstack/

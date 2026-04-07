@@ -85,21 +85,27 @@ All pages use a **768px centered content frame** (updated from 900px).
 - Shrinks responsively when viewport < 504px
 - Never exceeds 504px regardless of screen size
 
-### Hero Section Padding (`.page-hero`)
+### Hero Section Padding
 
-Every page's top section must use the `.page-hero` class. This class enforces consistent vertical rhythm across all pages.
+Each page type has its own hero padding class. All share the same `padding-top`; only `padding-bottom` differs.
 
-| Breakpoint | `padding-top` | `padding-bottom` |
-|------------|--------------|-----------------|
-| > 1032px   | **96px**     | **120px**       |
-| ≤ 1032px   | **48px**     | 120px           |
+| Class | Used on | `padding-top` (>1032px) | `padding-top` (≤1032px) | `padding-bottom` |
+|-------|---------|------------------------|------------------------|-----------------|
+| `.page-hero` | index | 96px | 48px | 120px |
+| `.page-hero-about` | about | 96px | 48px | 96px |
+| `.page-hero-case-study` | case studies | 96px | 48px | 48px |
 
 ```css
-.page-hero { padding-top: 96px; padding-bottom: 120px; }
-@media (max-width: 1032px) { .page-hero { padding-top: 48px; } }
+.page-hero, .page-hero-about, .page-hero-case-study { padding-top: 96px; }
+.page-hero { padding-bottom: 120px; }
+.page-hero-about { padding-bottom: 96px; }
+.page-hero-case-study { padding-bottom: 48px; }
+@media (max-width: 1032px) {
+  .page-hero, .page-hero-about, .page-hero-case-study { padding-top: 48px; }
+}
 ```
 
-**Rule:** Never set `padding-top` directly on `.hero`, `.about-hero`, `.hero-image-section`, or any other top-section class. Let `.page-hero` own it.
+**Rule:** Never set `padding-top` directly on `.hero`, `.about-hero`, `.hero-image-section`, or any other top-section class. Let the hero padding class own it.
 
 ### Navigation Breakpoints
 
@@ -162,16 +168,6 @@ Deep navy used sparingly for interactive states and emphasis (exact value TBD ba
 
 **VCR OSD Mono** is used exclusively for the hero caption ("worth the 3am"). This monospace font adds personality without disrupting the overall minimal aesthetic.
 
-```css
-@font-face {
-  font-family: 'VCR OSD Mono';
-  src: url('assets/VCROSDMono.woff2') format('woff2');
-  font-weight: normal;
-  font-style: normal;
-  font-display: swap;
-}
-```
-
 ### Type Scale
 
 ```css
@@ -186,19 +182,8 @@ Deep navy used sparingly for interactive states and emphasis (exact value TBD ba
 ### Responsive Breakpoints
 
 **Mobile:** ≤480px
-
 Font sizes scale down. All other design tokens (spacing, colors, line heights, letter spacing) remain unchanged.
 
-```css
-@media (max-width: 480px) {
-  :root {
-    --type-size-title: 22px;
-    --type-size-heading: 18px;
-    --type-size-body: 14px;
-    --type-size-meta: 12px;
-  }
-}
-```
 
 ### Typography Hierarchy
 
@@ -206,7 +191,7 @@ Font sizes scale down. All other design tokens (spacing, colors, line heights, l
 - Size: `var(--type-size-title)` (26px)
 - Weight: 500
 - Line height: 1.15
-- Letter spacing: -2% (`letter-spacing: -0.02em`)
+- Letter spacing: -5% (`letter-spacing: -0.02em`)
 - Color: `var(--color-text-primary)`
 - Max width: 504px
 
@@ -240,9 +225,9 @@ Only two weights are used:
 
 ### Line Height Rules
 
-- **Title (26px):** 1.15 - Tight leading for visual impact
-- **Headings (20px) & Meta (14px):** 1.33 - Standard rhythm
-- **Body (16px):** 1.4 - Optimized for readability
+- **Title (26px):** 1.15 
+- **Headings (20px) & Meta (14px):** 1.33 
+- **Body (16px):** 1.4 
 
 ---
 
@@ -300,38 +285,7 @@ Primary interaction patterns use **opacity changes** and **text underlining**.
 - Links and interactive text: Reduce opacity to `0.7`
 - Maintain underline decoration on links
 
-**Example:**
-```css
-a {
-  text-decoration: underline;
-  opacity: 1;
-  transition: opacity 0.2s ease;
-}
-
-a:hover {
-  opacity: 0.7;
-}
-```
-
 ---
-
-## Accessibility
-
-### Contrast Standards
-
-All text colors meet **WCAG AA** (4.5:1 minimum contrast ratio):
-
-- `var(--color-text-primary)` (#000000) on `var(--color-bg)` (#F8F8F8): 18.54:1 ✓
-- `var(--color-text-secondary)` (#6F6F6F) on `var(--color-bg)` (#F8F8F8): 4.52:1 ✓
-
-### Font Rendering
-
-```css
-html {
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-```
 
 ### Focus States
 
@@ -373,6 +327,3 @@ All images must have descriptive alt text:
 
 ---
 
-**Last reviewed:** March 30, 2026  
-**Maintained by:** Wilson Skinner  
-**Questions?** w0skinner@gmail.com

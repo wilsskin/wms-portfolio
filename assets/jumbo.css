@@ -20,11 +20,17 @@
   display: block;
 }
 
-/* Headline Section */
-.headline-section {
-  padding: var(--spacing-large) 0 0;
+/* Hero Case Section (merged headline + image) */
+.hero-case-section {
+  padding-top: 96px;
+  padding-bottom: 32px;
   background: var(--color-bg);
 }
+
+@media (max-width: 1032px) {
+  .hero-case-section {padding-top: 48px;}
+}
+
 
 .headline {
   font-family: 'Inter', sans-serif;
@@ -38,12 +44,9 @@
   padding-bottom: 2px;
 }
 
-/* Hero Image Section */
-/* .hero-image-section top/bottom padding handled by .page-hero */
-.hero-image-section {
-  padding-right: 0;
-  padding-left: 0;
-  background: var(--color-bg);
+/* Hero image spacing within merged section */
+.hero-case-section .thumbnail-meta {
+  margin-bottom: 16px;
 }
 
 .hero-image-container {

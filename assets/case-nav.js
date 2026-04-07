@@ -62,7 +62,7 @@
     // Staggered entry animation on first scroll
     const sectionsContainer = document.querySelector('.side-nav-sections');
     if (sectionsContainer) {
-      const items = sectionsContainer.querySelectorAll('.side-nav-pill, .side-nav-section-link');
+      const items = sectionsContainer.querySelectorAll('.side-nav-back, .side-nav-section-link');
 
       window.addEventListener('scroll', function onFirstScroll() {
         window.removeEventListener('scroll', onFirstScroll);

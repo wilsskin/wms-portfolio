@@ -61,7 +61,7 @@ Global CSS variables are defined at the top of `assets/style.css`:
 ```css
 --color-bg: #F8F8F8
 --color-text-primary: #000000
---color-text-secondary: #727272
+--color-text-secondary: #6F6F6F
 --spacing-unit: 8px
 --type-size-title: 26px
 --type-size-heading: 20px
