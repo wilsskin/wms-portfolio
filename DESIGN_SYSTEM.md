@@ -354,7 +354,7 @@ a:focus, button:focus {
 - **Wrap heading + paragraph pairs in `.text-container`** (gap 2px). For multiple paragraphs, nest them in a `.p-container` (gap 16px) inside the `.text-container`.
 - **Add `.color-grey` to `.subtitle-global`** for muted headings (HMW statements, section intro labels, quotes). Never use inline `style="color: ..."` for this.
 - **Use `caption-global caption-primary` together** for value text that sits next to a secondary-colored label.
-- **Let `.page-hero`, `.page-hero-about`, `.page-hero-case-study` own `padding-top`** on every page's top section.
+- **Let `.page-hero`, `.page-hero-about`, `.hero-case-section` own `padding-top`** on every page's top section.
 - **Use `var(--spacing-section)` between page sections** (Hero → cards → Playground → Footer).
 - **Use `.section-large` (`var(--spacing-section)`, 128px) as `padding-top` on main case study sections.**
 - **Keep all reading text at max-width 504px.** The global classes enforce this — don't override it wider.
