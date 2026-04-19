@@ -1,14 +1,7 @@
 # CLAUDE.md
 
-This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+Always read `DESIGN_SYSTEM.md` before making any changes. 
 
-## Commands
-
-```bash
-npm run dev    # Start local dev server at http://localhost:3000
-```
-
-No build step. Edit files and refresh the browser.
 
 ## Architecture
 

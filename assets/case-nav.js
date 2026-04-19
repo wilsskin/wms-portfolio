@@ -45,7 +45,14 @@
 
       sectionLinks.forEach(link => link.classList.remove('active'));
       if (currentSection) {
-        const active = document.querySelector(`.side-nav-section-link[href="#${currentSection.id}"]`);
+        let active = document.querySelector(`.side-nav-section-link[href="#${currentSection.id}"]`);
+        // If no nav link for this section, walk backward to find the nearest one that has a link
+        if (!active) {
+          for (let i = Array.from(sections).indexOf(currentSection) - 1; i >= 0; i--) {
+            active = document.querySelector(`.side-nav-section-link[href="#${sections[i].id}"]`);
+            if (active) break;
+          }
+        }
         if (active) active.classList.add('active');
       }
     }
