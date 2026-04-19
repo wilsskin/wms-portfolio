@@ -1,329 +1,454 @@
 # Portfolio Design System
 
-**Version:** 2.0  
-**Last Updated:** March 30, 2026  
+**Version:** 3.0  
+**Last Updated:** April 14, 2026  
 **Site:** [wilsonskinner.com](https://wilsonskinner.com)
 
-This document defines the complete design system for Wilson Skinner's portfolio. It ensures visual consistency, readable typography, and predictable alignment across all pages and components.
+Read this before making any visual change. If you're in a hurry, jump straight to [Global Text Classes](#global-text-classes) and [Do's and Don'ts](#dos-and-donts).
 
 ---
 
-## Table of Contents
+## Quick Reference
 
-1. [Design Principles](#design-principles)
-2. [Layout System](#layout-system)
-3. [Color System](#color-system)
-4. [Typography](#typography)
-5. [Spacing System](#spacing-system)
-6. [Interactive States](#interactive-states)
-7. [Accessibility](#accessibility)
+The values you'll reach for 90% of the time:
+
+| What                   | Value                                     |
+|------------------------|-------------------------------------------|
+| Page background        | `#F8F8F8` · `var(--color-bg)`             |
+| Primary text           | `#000000` · `var(--color-text-primary)`   |
+| Secondary text         | `#6F6F6F` · `var(--color-text-secondary)` |
+| Border                 | `#CCCCCC` · `var(--color-border-light)`   |
+| Page title             | `.headline-global` · 26px · 500           |
+| Section heading        | `.subtitle-global` · 20px · 500           |
+| Body text              | `.paragraph-global` · 16px · 400          |
+| Caption / label        | `.caption-global` · 14px · 400            |
+| Between sections       | `var(--spacing-section)` · 128px          |
+| Case study section top | `.section-large` · `var(--spacing-section)` · 128px |
+| Reading column         | `max-width: 504px`                        |
 
 ---
 
-## Design Principles
+## Visual Theme & Atmosphere
 
-**Clarity over decoration.** Every element serves the content. No decorative elements without purpose.
+Wilson Skinner's portfolio is editorial restraint. The canvas is near-white (`#F8F8F8`), not pure white — soft enough to feel considered. Headlines are pure black; body text steps back to `#6F6F6F`. There are no accent colors, no gradients, no decorative illustrations. Depth comes from spacing alone.
 
-**Strong hierarchy.** Large text blocks anchor narratives. Information architecture should be instantly clear.
+The type system uses two weights (400 and 500) and four sizes. Letter-spacing pulls headlines tight — compressed, confident. Body text runs at default tracking. The reading column caps at 504px. Every element earns its pixel.
 
-**Intentional whitespace.** Generous spacing guides the eye and creates breathing room.
+The overall effect is a site that says: *the work speaks for itself*.
 
-**Readable storytelling.** The 504px reading column maintains 45-75 characters per line for optimal readability.
+---
 
-**Minimal aesthetic.** Grayscale palette, clean geometric forms, no gradients.
+## Global Text Classes
+
+Four classes cover all text on the site. Use them directly in HTML. Do not write custom `font-size` or `font-weight` rules unless a component genuinely requires it.
+
+### Typography Hierarchy
+
+All four classes enforce `max-width: 504px`. This is the reading column — never override it wider. `.caption-global` is the only exception (no max-width, used for short labels).
+
+| Role           | Class               | Size (mobile) | Weight | lh   | ls      | Color     |
+|----------------|---------------------|---------------|--------|------|---------|-----------|
+| Page Title     | `.headline-global`  | 26px (22px)   | 500    | 1.15 | -0.05em | primary   |
+| Section Header | `.subtitle-global`  | 20px (18px)   | 500    | 1.33 | -0.02em | primary   |
+| Body Text      | `.paragraph-global` | 16px (14px)   | 400    | 1.4  | 0       | secondary |
+| Caption / Meta | `.caption-global`   | 14px          | 400    | 1.33 | +0.01em | secondary |
+
+**Mobile** = ≤480px viewport. Sizes are driven by the `--type-size-*` token scaling, not per-class overrides.
+
+**Font:** Inter. Loaded from Google Fonts. Fallbacks: `system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif`.
+
+**Weights used:** 400 (Regular) and 500 (Medium) only. Never use 600, 700, or bold.
+
+### Class Usage Details
+
+| Class               | Element          | Notes                                                                         |
+|---------------------|------------------|-------------------------------------------------------------------------------|
+| `.headline-global`  | `<h1>`           | One per page. This class is the single source of truth for h1 styling — there is no separate base `h1` rule. Always add this class to every `<h1>`. For grey inline subtext, use `<span style="color: var(--color-text-secondary)">` inside the h1. |
+| `.subtitle-global`  | `<h2>` · `<h3>`  | Muted variant: add `.color-grey` utility class                        |
+| `.paragraph-global` | `<p>`            | No built-in margin. Use `.text-container` / `.p-container` to own spacing     |
+| `.caption-global`   | any inline/block | Labels, captions, meta. Add `.caption-primary` to force color to `#000`       |
+
+### What's Outside These Classes
+
+A handful of text styles are handled by component CSS and don't use the global classes:
+
+| Text                           | Where                                                      | Why                                                   |
+|--------------------------------|------------------------------------------------------------|-------------------------------------------------------|
+| Hero caption ("worth the 3am") | `.hero-caption`                                            | Monospace, uppercase — intentional style break        |
+| Nav links                      | `.header-nav-link`, `.side-nav-link`, `.mobile-menu-nav a` | Component-specific weight, color, and hover behavior  |
+| Footer text                    | `.footer-left`                                             | Uses `--type-size-body` directly                      |
+
+---
+
+## Utility Classes
+
+Single-purpose classes that modify color or text style. Apply these on top of a global text class — never use them alone.
+
+| Class              | Effect                                          | Use                                                         |
+|--------------------|-------------------------------------------------|-------------------------------------------------------------|
+| `.color-grey`      | `color: var(--color-text-secondary)` (#6F6F6F)  | Muted headings — HMW statements, quotes, section intros     |
+| `.color-black`     | `color: var(--color-text-primary)` (#000000)    | Emphasize inline text within a grey or secondary-color block |
+| `.caption-primary` | `color: var(--color-text-primary)` (#000000)    | Value text next to a secondary-colored label in meta rows   |
+| `.text-bold`       | `font-weight: 500`                              | Bump any global text class to medium weight                 |
+
+---
+
+## Container Classes
+
+Two small flex wrappers own the spacing between text elements. Containers own gaps — text classes stay margin-free.
+
+| Class             | Layout                             | Use                                                                |
+|-------------------|------------------------------------|--------------------------------------------------------------------|
+| `.text-container` | flex column · gap 2px · max 504px  | One `.subtitle-global` + one or more `.paragraph-global` below it  |
+| `.p-container`    | flex column · gap 16px             | Multiple `.paragraph-global` siblings. Nest inside `.text-container` when it follows a heading |
+
+**Single paragraph under a heading:**
+
+```html
+<div class="text-container">
+  <h3 class="subtitle-global">Heading</h3>
+  <p class="paragraph-global">Body.</p>
+</div>
+```
+
+**Multiple paragraphs under a heading:**
+
+```html
+<div class="text-container">
+  <h3 class="subtitle-global">Heading</h3>
+  <div class="p-container">
+    <p class="paragraph-global">First paragraph.</p>
+    <p class="paragraph-global">Second paragraph.</p>
+  </div>
+</div>
+```
+
+Gaps: 2px between heading and body (tight hierarchy), 16px between sibling paragraphs (breathing room).
+
+---
+
+## Design Tokens
+
+### Colors
+
+| Token                    | Value     | Use                                             | Notes                         |
+|--------------------------|-----------|-------------------------------------------------|-------------------------------|
+| `--color-bg`             | `#F8F8F8` | Page background, card backgrounds, mobile menu  |                               |
+| `--color-text-primary`   | `#000000` | Headlines, active nav links, emphasis text      |                               |
+| `--color-text-secondary` | `#6F6F6F` | Body paragraphs, captions, inactive nav, footer | WCAG AA: 4.52:1 on `#F8F8F8`  |
+| `--color-border-light`   | `#CCCCCC` | Work card borders, dividers, status pill border |                               |
+
+Never hardcode hex values for these. Always use the token. Never introduce new colors outside this palette.
+
+### Typography Tokens
+
+```css
+:root {
+  --font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  --type-size-title: 26px;    /* .headline-global — scales to 22px at ≤480px */
+  --type-size-heading: 20px;  /* .subtitle-global — scales to 18px at ≤480px */
+  --type-size-body: 16px;     /* .paragraph-global — scales to 14px at ≤480px */
+  --type-size-meta: 14px;     /* .caption-global — no scaling */
+}
+```
+
+### Radii
+
+```css
+:root {
+  --radius-sm: 4px;   /* Subtle — tag pills */
+  --radius-md: 8px;   /* Standard — logo, avatar, small cards */
+  --radius-lg: 16px;  /* Large — work preview cards */
+}
+```
+
+### Shadows
+
+```css
+:root {
+  --shadow-light: 0 1px 3px rgba(0,0,0,0.1);   /* Status pill, icon link hover */
+  --shadow-medium: 0 4px 8px rgba(0,0,0,0.15); /* Work card hover */
+}
+```
 
 ---
 
 ## Layout System
 
-### Container Structure
-
-All pages use a **768px centered content frame** (updated from 900px).
+### Container
 
 ```css
 .container {
-  max-width: 768px;
+  max-width: 816px;
   margin: 0 auto;
-  padding: 0 var(--side-padding);
+  padding: 0 var(--side-padding); /* 24px, 16px at ≤480px */
 }
 ```
 
-### Grid System
+### Reading Column
 
-**12-column grid** with 24px gutters inside the 768px container.
+All global text classes have `max-width: 504px`. This is the reading column. It keeps line length in the 45-75 character optimal range. Don't override it to make text wider.
 
-| Property | Value |
-|----------|-------|
-| Container width | 768px |
-| Columns | 12 |
-| Column width | 42px |
-| Gutter width | 24px |
-| Total gutters | 11 |
-
-**Grid math:** `(12 × 42) + (11 × 24) = 768px`
-
-### Key Layout Values
-
-| Purpose | Width | Columns |
-|---------|-------|---------|
-| **Reading column** | **504px** | **7 columns + 6 gutters** |
-| Full width | 768px | 12 columns + 11 gutters |
-| Half width | 372px | 6 columns + 5 gutters |
-
-**Reading column calculation:** `(7 × 42) + (6 × 24) = 504px`
-
-**Alignment principle:** All body text aligns to the 504px reading column for comfortable line length and visual rhythm.
-
-### Responsive Behavior
-
-**Side padding:** Always `24px` (`var(--side-padding)`) on all screen sizes
-
-**Container elements:** Shrink responsively with viewport width
-
-**Reading column:**
-- `max-width: 504px`
-- Shrinks responsively when viewport < 504px
-- Never exceeds 504px regardless of screen size
+**Reference grid:** 768px content frame = 12 × 42px columns + 11 × 24px gutters. Reading column = 7 columns + 6 gutters = 504px.
 
 ### Hero Section Padding
 
-Each page type has its own hero padding class. All share the same `padding-top`; only `padding-bottom` differs.
+Each page type uses a dedicated class to control hero vertical spacing. Never set `padding-top` directly on the hero section element — the class owns it.
 
-| Class | Used on | `padding-top` (>1032px) | `padding-top` (≤1032px) | `padding-bottom` |
-|-------|---------|------------------------|------------------------|-----------------|
-| `.page-hero` | index | 96px | 48px | 120px |
-| `.page-hero-about` | about | 96px | 48px | 96px |
-| `.page-hero-case-study` | case studies | 96px | 48px | 48px |
+| Class                   | Page         | `padding-top` | `padding-top` (≤1032px) | `padding-bottom` |
+|-------------------------|--------------|---------------|-------------------------|------------------|
+| `.page-hero`            | index        | 96px          | 48px                    | 128px            |
+| `.page-hero-about`      | about        | 96px          | 48px                    | 32px             |
+| `.hero-case-section`    | case studies | 96px          | 48px                    | — (summary-section top padding provides gap) |
 
-```css
-.page-hero, .page-hero-about, .page-hero-case-study { padding-top: 96px; }
-.page-hero { padding-bottom: 120px; }
-.page-hero-about { padding-bottom: 96px; }
-.page-hero-case-study { padding-bottom: 48px; }
-@media (max-width: 1032px) {
-  .page-hero, .page-hero-about, .page-hero-case-study { padding-top: 48px; }
-}
-```
+> `.hero-case-section` is defined in `assets/case.css`, not `style.css`.
 
-**Rule:** Never set `padding-top` directly on `.hero`, `.about-hero`, `.hero-image-section`, or any other top-section class. Let the hero padding class own it.
+### Navigation Breakpoints & Collapsing Strategy
 
-### Navigation Breakpoints
+| Breakpoint  | Navigation                                             | What changes                                                    |
+|-------------|--------------------------------------------------------|-----------------------------------------------------------------|
+| > 1032px    | Fixed left sidebar (`.side-nav`)                       | Full nav visible                                                |
+| 481–1032px  | Inline top nav (`.header-nav`)                         | Work / About / Resume links, right-aligned                      |
+| ≤ 480px     | Hamburger menu (`.hamburger` + `.mobile-menu-overlay`) | Inline nav hides; hamburger appears; full-screen overlay on tap |
 
-| Breakpoint | Navigation shown |
-|------------|-----------------|
-| > 1032px   | Fixed left sidebar (`.side-nav`) |
-| 481–1032px | Inline top nav (`.header-nav`) — Work / About / Resume, right-aligned |
-| ≤ 480px    | Hamburger menu only |
+**At ≤768px:** "View →" link hides from work cards; full card becomes the tap target via a pseudo-element overlay.
 
----
-
-## Color System
-
-### Base Colors
-
-```css
-:root {
-  --color-bg: #F8F8F8;              /* Page background */
-  --color-text-primary: #000000;    /* Headlines, body text */
-  --color-text-secondary: #6F6F6F;  /* Metadata, supporting text */
-  --color-border-light: #CCCCCC;    /* Dividers, borders */
-}
-```
-
-**Note on secondary color:** Updated from `#727272` to `#6F6F6F` for WCAG AA compliance (4.52:1 contrast on `#F8F8F8` background).
-
-### Color Usage
-
-- **Primary text** (`var(--color-text-primary)`): Headlines, body paragraphs, navigation, buttons
-- **Secondary text** (`var(--color-text-secondary)`): Role titles, dates, captions, metadata, footer
-- **Border** (`var(--color-border-light)`): Dividers, card borders, section separators
-- **Background** (`var(--color-bg)`): Page background
-
-### Contrast Requirements
-
-All text colors meet **WCAG AA** standards (4.5:1 minimum contrast ratio):
-
-- `#000000` on `#F8F8F8`: 18.54:1 ✓
-- `#6F6F6F` on `#F8F8F8`: 4.52:1 ✓
-
-**Note:** `#6F6F6F` was chosen over `#727272` because `#727272` falls just below WCAG AA at 4.47:1 contrast.
-
-### Accent Color
-
-Deep navy used sparingly for interactive states and emphasis (exact value TBD based on brand assets).
-
----
-
-## Typography
-
-### Font Family
-
-```css
-:root {
-  --font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
-}
-```
-
-**Inter** is the primary typeface for all text. It provides excellent readability at all sizes and weights.
-
-**VCR OSD Mono** is used exclusively for the hero caption ("worth the 3am"). This monospace font adds personality without disrupting the overall minimal aesthetic.
-
-### Type Scale
-
-```css
-:root {
-  --type-size-title: 26px;      /* H1, page titles */
-  --type-size-heading: 20px;    /* H2, section headers */
-  --type-size-body: 16px;       /* Paragraphs, default text */
-  --type-size-meta: 14px;       /* Captions, labels, metadata */
-}
-```
-
-### Responsive Breakpoints
-
-**Mobile:** ≤480px
-Font sizes scale down. All other design tokens (spacing, colors, line heights, letter spacing) remain unchanged.
-
-
-### Typography Hierarchy
-
-**H1 - Page Title**
-- Size: `var(--type-size-title)` (26px)
-- Weight: 500
-- Line height: 1.15
-- Letter spacing: -5% (`letter-spacing: -0.02em`)
-- Color: `var(--color-text-primary)`
-- Max width: 504px
-
-**H2/H3 - Section Headers** (equivalent)
-- Size: `var(--type-size-heading)` (20px)
-- Weight: 500
-- Line height: 1.33
-- Letter spacing: -1% (`letter-spacing: -0.01em`)
-- Color: `var(--color-text-primary)`
-
-**Body Text**
-- Size: `var(--type-size-body)` (16px)
-- Weight: 400
-- Line height: 1.4
-- Letter spacing: 0 (default)
-- Color: `var(--color-text-primary)`
-- Max width: 504px
-
-**Meta Text**
-- Size: `var(--type-size-meta)` (14px)
-- Weight: 400
-- Line height: 1.33
-- Letter spacing: 0 (default)
-- Color: `var(--color-text-secondary)`
-
-### Font Weights
-
-Only two weights are used:
-- **400** (Regular) - Body text, meta text
-- **500** (Medium) - All headings, emphasis
-
-### Line Height Rules
-
-- **Title (26px):** 1.15 
-- **Headings (20px) & Meta (14px):** 1.33 
-- **Body (16px):** 1.4 
+**At ≤480px:** Type sizes scale down (title 26→22px, heading 20→18px, body 16→14px). Side padding reduces to 16px. About page experience year hides. Hero animation duration reduces.
 
 ---
 
 ## Spacing System
 
-All spacing uses an **8px base unit** for consistent vertical rhythm.
+8px base unit. Always use tokens — never hardcode arbitrary pixel values.
 
 ```css
 :root {
-  --spacing-unit: 8px;
-  --side-padding: 16px;
-  
-  /* Spacing scale */
-  --spacing-xsmall: 16px;      /* 2 × 8px */
-  --spacing-small: 24px;       /* 3 × 8px */
-  --spacing-medium: 32px;      /* 4 × 8px */
-  --spacing-large: 64px;       /* 8 × 8px */
-  --spacing-xlarge: 80px;      /* 10 × 8px */
-  --spacing-xxlarge: 96px;     /* 12 × 8px */
-  --spacing-section: 128px;    /* 16 × 8px - Between page sections */
-  --spacing-casestudy: 160px;  /* 20 × 8px - Top padding for case study sections */
+  --side-padding: 24px;        /* 16px at ≤480px */
+  --spacing-xsmall: 16px;      /* Label-to-value, icon-to-text, tight gaps */
+  --spacing-small: 24px;       /* Heading-to-paragraph, list items */
+  --spacing-medium: 32px;      /* Content blocks, image-to-caption */
+  --spacing-large: 64px;       /* Between cards or playground items */
+  --spacing-xlarge: 80px;
+  --spacing-xxlarge: 96px;     /* Hero section top padding reference */
+  --spacing-section: 128px;    /* Between page sections (Hero → cards → Playground) */
 }
 ```
 
-### Spacing Usage Guide
+**At ≤768px**, these scale down automatically
 
-**Between page sections:** `var(--spacing-section)` (128px)  
-Used between Hero → Intro, Intro → Experience, Experience → Case Studies
 
-**Case study section padding:** `var(--spacing-casestudy)` (160px)  
-Applied to top of CONTEXT, PROBLEM, GOAL, SOLUTION, PROCESS sections
+## Component Specs
 
-**Extra large spacing:** `var(--spacing-xxlarge)` (96px)  
-For generous section breaks or special layout needs
+### Work Cards (Index Page)
 
-**Between cards/items:** `var(--spacing-large)` (64px)  
-Vertical spacing between case study cards, playground items
+```
+.work-card                            — section wrapper, no styling
+  .container
+    .thumbnail-description            — row: title/desc left, "View →" right
+      .text-container                 — flex column, gap 2px, max-width 504px
+        .subtitle-global              — case study name
+        .paragraph-global             — one-line description
+      .thumbnail-view-link            — 14px secondary, hides at ≤768px
+    .work-preview                     — the card frame
+      .thumbnail-wrapper              — absolute, grid layout of screenshots
+```
 
-**Between content blocks:** `var(--spacing-medium)` (32px)  
-Paragraph spacing, image-to-caption spacing
+**`.work-preview` base styles:**
+- Border: `1px solid var(--color-border-light)` (#CCCCCC)
+- Border-radius: `16px`
+- Aspect ratio: `900 / 475`
+- Max-width: `768px`
+- Background: `var(--color-bg)` (overridden per case study)
 
-**Between related elements:** `var(--spacing-small)` (24px)  
-Heading-to-paragraph, list item spacing
+**Case study card colors:**
 
-**Tight spacing:** `var(--spacing-xsmall)` (16px)  
-Label-to-value, icon-to-text
+| Case Study | Background | Hover Background | Hover Border |
+|------------|------------|------------------|--------------|
+| CarGurus   | `#B8D5E6`  | `#7CB6D7`        | `#0578BB`    |
+| Bodega Bay | `#CFC9DF`  | `#AA9ECB`        | `#6149A2`    |
+| JumboCode  | `#C1DFD6`  | `#8ECAB9`        | `#28A07E`    |
+
+**Hover:** `box-shadow: var(--shadow-medium)` + enhanced border color. Transition: `all 0.4s cubic-bezier(0.33, 1, 0.68, 1)`.
+
+**Between cards:** `margin-top: var(--spacing-xxlarge)` (96px).
+
+---
+
+### Case Study Section Layout
+
+Each narrative section (Context, Problem, Goal, Solution, Process) follows the same structure:
+
+```html
+<section class="case-section section-large" id="sectionname">
+  <div class="container">
+    <h2 class="caption-global section-title">SECTION LABEL</h2>
+    <div class="text-container">
+      <h3 class="subtitle-global">The section headline goes here</h3>
+      <p class="paragraph-global">Body text description.</p>
+    </div>
+    <!-- images, additional paragraphs, etc. -->
+  </div>
+</section>
+```
+
+- Section top padding: `var(--spacing-section)` (128px) via `.section-large`
+- All text: max-width 504px (enforced by global classes)
+- Images: `.media-frame` (max-width 768px, aspect-ratio 900/475, border-radius 16px)
+
+> **Spacing rule:** All inter-section spacing on case study pages is applied as `padding-top` on the incoming section — never as `padding-bottom` on the outgoing one. Do not add bottom padding to section classes.
+
+---
+
+### Navigation
+
+**Side nav (>1032px):**
+- Fixed left, always visible
+- Case study pages: shows "Back" link + in-page section links
+- Links: 16px body size, 400 weight, secondary color; active = primary color
+
+**Header nav (481–1032px):**
+- Inline top bar, 56px height
+- Links: 16px, 400 weight, letter-spacing -0.32px, secondary; active/hover = primary
+- Logo left, nav right
+
+**Mobile menu (≤480px):**
+- Full-screen overlay, background `--color-bg`
+- Links: 20px heading size, 400 weight, secondary; active = primary + 500 weight
+
+---
+
+## Depth & Elevation
+
+| Level      | Treatment                                                       | Use                                              |
+|------------|-----------------------------------------------------------------|--------------------------------------------------|
+| Flat       | No shadow, no border                                            | Page background, text blocks, section containers |
+| Bordered   | `1px solid var(--color-border-light)`                           | Work card base state, status pill, icon links    |
+| Elevated   | `border` + `var(--shadow-medium)` (0 4px 8px rgba(0,0,0,0.15))  | Work card hover state                            |
+| Light lift | `var(--shadow-light)` (0 1px 3px rgba(0,0,0,0.1))               | Status pill hover, icon link hover               |
+
+This site has no layered multi-shadow system. One border, one hover shadow. Keep it that way.
 
 ---
 
 ## Interactive States
 
-Primary interaction patterns use **opacity changes** and **text underlining**.
+**Hover:** color shifts from secondary → primary (text elements), or `opacity: 0.7` (generic links). Maintain underline on links.
 
-**Hover states:**
-- Links and interactive text: Reduce opacity to `0.7`
-- Maintain underline decoration on links
+**Transition timing:** `cubic-bezier(0.33, 1, 0.68, 1)` (ease-out spring) at 0.3–0.4s for most interactions. `cubic-bezier(0.22, 1, 0.36, 1)` for fast exits. Be consistent — don't introduce new easing curves.
 
----
-
-### Focus States
-
-All interactive elements must have visible focus states for keyboard navigation:
-
+**Focus:**
 ```css
-a:focus,
-button:focus {
+a:focus, button:focus {
   outline: 2px solid var(--color-text-primary);
   outline-offset: 2px;
 }
 ```
 
-### Alt Text
+---
 
-All images must have descriptive alt text:
-- Decorative images: `alt=""`
-- Content images: Describe what's shown
-- Functional images: Describe purpose/action
+## Do's and Don'ts
 
-### Semantic HTML
+### Do
 
-- Use proper heading hierarchy (H1 → H2 → H3)
-- Use `<nav>` for navigation
-- Use `<main>` for primary content
-- Use `<footer>` for footer content
-- Use `<article>` for case studies
+- **Use the 4 global classes for all body text.** `.headline-global`, `.subtitle-global`, `.paragraph-global`, `.caption-global` — that's the whole system.
+- **Wrap heading + paragraph pairs in `.text-container`** (gap 2px). For multiple paragraphs, nest them in a `.p-container` (gap 16px) inside the `.text-container`.
+- **Add `.color-grey` to `.subtitle-global`** for muted headings (HMW statements, section intro labels, quotes). Never use inline `style="color: ..."` for this.
+- **Use `caption-global caption-primary` together** for value text that sits next to a secondary-colored label.
+- **Let `.page-hero`, `.page-hero-about`, `.hero-case-section` own `padding-top`** on every page's top section.
+- **Use `var(--spacing-section)` between page sections** (Hero → cards → Playground → Footer).
+- **Use `.section-large` (`var(--spacing-section)`, 128px) as `padding-top` on main case study sections.**
+- **Keep all reading text at max-width 504px.** The global classes enforce this — don't override it wider.
+- **Use color tokens everywhere.** `var(--color-text-secondary)` not `#6F6F6F` inline.
+
+### Don't
+
+- **Don't write custom `font-size` or `font-weight` rules for new text.** Reach for a global class first.
+- **Don't set `padding-top` directly on `.hero`, `.about-hero`, or any hero-area element.** The hero padding class owns it. Overriding it will break responsive scaling.
+- **Don't hardcode hex values** for the main palette. `#6F6F6F`, `#CCCCCC`, `#F8F8F8`, `#000` should always come from tokens.
+- **Don't use weights 600 or 700.** The system uses 400 and 500 only. Using bolder weights breaks the typographic hierarchy.
+- **Don't add `margin-top` to `.paragraph-global` manually.** The class is margin-free; gaps live on the containing `.text-container` or `.p-container`.
+- **Don't use arbitrary spacing values.** 20px, 40px, 48px (except at breakpoints) — anything outside the token scale adds inconsistency. Use the nearest token.
+- **Don't create new color values** for text or borders. If a new color feels necessary, it's a design decision — resolve it in Figma first, update the token, then implement.
+- **Don't introduce new easing curves.** Use the two existing cubic-beziers.
 
 ---
 
-## Version History
+## Accessibility
 
-**v2.0** (March 30, 2026)
-- Container: 768px with 12 columns (42px columns, 24px gutters)
-- Reading column: 504px (7 columns + 6 gutters)
-- Secondary text: `#6F6F6F` (WCAG AA compliant)
-- Mobile breakpoint: 480px
-- Added: `--spacing-xxlarge: 96px`
+| Text                   | Contrast | Passes   |
+|------------------------|----------|----------|
+| `#000000` on `#F8F8F8` | 18.54:1  | WCAG AAA |
+| `#6F6F6F` on `#F8F8F8` | 4.52:1   | WCAG AA  |
+
+- All images: descriptive `alt` text. Decorative images: `alt=""`.
+- Heading hierarchy: H1 → H2 → H3. Don't skip levels.
+- Semantic HTML: `<nav>`, `<main>`, `<footer>`, `<article>`, `<section>`.
+- All interactive elements: visible focus state (2px solid black outline).
+- Respect `prefers-reduced-motion` — the hero animation already handles this.
 
 ---
 
+## Case Study CSS Architecture
+
+All three case study pages share a single `assets/case.css` file. It has three sections: **Global** (shared layout and component classes), then one scoped section per page — **JumboCode**, **CarGurus**, and **Bodega Bay**.
+
+**Key shared classes in the Global section:**
+
+| Class | Role |
+|---|---|
+| `.hero-case-section` | Hero section top padding (96px, 48px ≤1032px) |
+| `.split-grid` | Two-column flex layout (merged from showcase-grid + research-grid) |
+| `.split-col` | Column inside a split-grid (merged from showcase-item + research-item) |
+| `.col-image` | Flex-column image wrapper inside a split-col |
+| `.metric-row` | Row of metric/info cards (merged from impact-container + problems-grid) |
+| `.metric-card` | Individual card in a metric-row (merged from impact-card + problem-card) |
+| `.section-content` | Vertical content stack with 16px gap (process, prototypes, design subsections) |
+| `.section-large` | `padding-top: var(--spacing-section)` (128px) |
+| `.section-medium` | `padding-top: var(--spacing-section)` (96px) |
+
+Theme colors (hero background, impact numbers, goal numbers, hover states) are scoped by a body class (`page-jumbocode`, `page-cargurus`, `page-bodegabay`). To add a new case study: (1) add a new section at the bottom of `case.css` with a `.page-newname` scope, (2) add `<body class="page-newname">` and `<link rel="stylesheet" href="../assets/case.css">` to the HTML. Structural/layout classes that the new page shares with existing pages go in the Global section; anything unique to that page goes in its own scoped section.
+
+---
+
+## Agent Prompt Guide
+
+### Quick Color Reference
+
+```
+Page background:   #F8F8F8  (var(--color-bg))
+Primary text:      #000000  (var(--color-text-primary))
+Secondary text:    #6F6F6F  (var(--color-text-secondary))
+Border:            #CCCCCC  (var(--color-border-light))
+```
+
+### Example Component Prompts
+
+**Page title (H1):**
+> Use `.headline-global` on an `<h1>` — Inter 26px weight 500, line-height 1.15, letter-spacing -0.05em (-1.3px), color #000000, max-width 504px. One per page.
+
+**Section heading:**
+> Use `.subtitle-global` on `<h2>` (top-level section) or `<h3>` (sub-section within a section) — never `<p>` or `<h4>`. Inter 20px weight 500, line-height 1.33, letter-spacing -0.02em (-0.4px), color #000000, max-width 504px. For muted style, add `.color-grey`.
+
+**Body paragraph:**
+> Use `.paragraph-global` on `<p>` — Inter 16px weight 400, line-height 1.4, letter-spacing 0, color #6F6F6F, max-width 504px. No built-in margin; wrap with `.text-container` (under a heading) or `.p-container` (between sibling paragraphs) to control spacing.
+
+**Caption / label:**
+> Use `.caption-global` — Inter 14px weight 400, line-height 1.33, letter-spacing +0.01em (+0.14px), color #6F6F6F. Add `.caption-primary` to make it #000000.
+
+**Work card frame:**
+> `.work-preview`: border 1px solid #CCCCCC, border-radius 16px, aspect-ratio 900/475, max-width 768px, background matches the case study variant. Hover: box-shadow 0 4px 8px rgba(0,0,0,0.15) + enhanced border color.
+
+**Case study section:**
+> Section: `padding-top: 128px` (var(--spacing-section)) via `.section-large`. Label: `.caption-global` (secondary). Heading: `.subtitle-global`. Body: `.paragraph-global`. All max-width 504px. Images: `.media-frame` with 16px border-radius, 900/475 aspect ratio, max-width 768px.
+
+**Navigation link (inline header):**
+> Inter 16px weight 400, letter-spacing -0.32px, color #6F6F6F. Active/hover: color #000000. No underline. Transition: color 0.2s ease.
+
+### Iteration Guide
+
+- Reach for a global and utility class before writing any custom font rule 
+- Letter-spacing compresses with size: -0.05em at 26px, -0.02em at 20px, 0 at 16px, +0.01em at 14px
+- Two weights only: 400 reads, 500 announces
+- Secondary color (#6F6F6F) is the default for body text — primary (#000) is reserved for headings and active/hover states
+- 504px is the maximum line width for any reading text — never wider
+- Spacing is always a token — if it's not in the scale, round to the nearest one
