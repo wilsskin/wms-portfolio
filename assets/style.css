@@ -51,6 +51,15 @@ body {
   --radius-lg: 16px;
   --shadow-light: 0 1px 3px rgba(0,0,0,0.1);
   --shadow-medium: 0 4px 8px rgba(0,0,0,0.15);
+  /* Thumbnail card: three-layer border shadow. Hover bumps alpha on all layers. */
+  --shadow-thumbnail:
+    0 0 0 1px rgba(0, 0, 0, 0.06),
+    0 1px 2px -1px rgba(0, 0, 0, 0.06),
+    0 2px 4px 0 rgba(0, 0, 0, 0.04);
+  --shadow-thumbnail-hover:
+    0 0 0 1px rgba(0, 0, 0, 0.08),
+    0 1px 2px -1px rgba(0, 0, 0, 0.08),
+    0 2px 4px 0 rgba(0, 0, 0, 0.06);
   --font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
   
   /* Typography tokens */
@@ -763,155 +772,51 @@ html.ready .hero-inner .hero-image-wrap {
   gap: 16px;
 }
 
-/* enhanced preview + hover animation */
+/* Case study thumbnail — single image, fills the container */
 .work-preview {
-  border: 1px solid var(--color-border-light);
-  border-radius: 16px;
-  overflow: hidden;
-  background: var(--color-bg);
-  cursor: pointer;
-  transition: all 0.4s cubic-bezier(0.33, 1, 0.68, 1);
-  max-width: 768px;
+  display: block;
   width: 100%;
-  aspect-ratio: 900 / 475;
+  max-width: 768px;
+  aspect-ratio: 16 / 9;
+  border-radius: var(--radius-lg);
+  object-fit: cover;
   margin-left: auto;
   margin-right: auto;
-  position: relative;
-  /* Enables container query units (cqi) for children */
-  container-type: inline-size;
 }
 
-/* Case study specific preview styling */
-.work-preview.jumbocode {
-  border-color: #F8F8F8;
-  background: #C1DFD6;
+/* Reusable three-layer shadow utility for large thumbnail cards */
+.shadow-thumbnail {
+  box-shadow: var(--shadow-thumbnail);
+  transition: box-shadow 0.3s cubic-bezier(0.33, 1, 0.68, 1);
+}
+.shadow-thumbnail:hover {
+  box-shadow: var(--shadow-thumbnail-hover);
 }
 
-.work-preview-link:hover .work-preview.jumbocode {
-  background: #8ECAB9;
-  box-shadow: var(--shadow-medium);
-  border-color: #28A07E;
+/* Entrance: fade + rise once the image is decoded (JS adds .loaded).
+   Matched durations and a symmetric opacity curve so the gesture reads
+   as one smooth arrival rather than a front-loaded pop. */
+.work-preview {
+  opacity: 0;
+  transform: translateY(16px);
+  transition:
+    opacity 600ms cubic-bezier(0.4, 0, 0.2, 1),
+    transform 600ms cubic-bezier(0.22, 1, 0.36, 1);
 }
-
-.work-preview.cargurus {
-  border-color:  #F8F8F8;
-  background: #B8D5E6;
+.work-preview.loaded {
+  opacity: 1;
+  transform: translateY(0);
 }
+/* Stagger via sibling combinators — 1st card 0ms, 2nd +100ms, 3rd +200ms */
+.work-card ~ .work-card .work-preview { transition-delay: 100ms; }
+.work-card ~ .work-card ~ .work-card .work-preview { transition-delay: 200ms; }
 
-.work-preview-link:hover .work-preview.cargurus {
-  background: #7CB6D7;
-  box-shadow: var(--shadow-medium);
-  border-color: #0578BB;
-}
-
-/* Bodega Bay Lavender card */
-.work-preview.bodegabay {
-  border-color: #F8F8F8;
-  background: #CFC9DF;
-}
-
-.work-preview-link:hover .work-preview.bodegabay {
-  background: #AA9ECB;
-  box-shadow: var(--shadow-medium);
-  border-color: #6149A2;
-}
-
-/* Thumbnail wrapper - uses CSS Grid with container query-based spacing */
-.thumbnail-wrapper {
-  position: absolute;
-  inset: 0; /* fill entire .work-preview */
-  --space: clamp(12px, 3.555cqi, 32px);
-  padding: var(--space); /* gives top/left/right padding */
-  padding-bottom: 0; /* keep images flush to bottom */
-  display: grid;
-  gap: var(--space);
-  grid-template-columns: 547fr 257fr;
-  align-items: end; /* bottom align items within their cells */
-  align-content: end; /* keep the entire row anchored to bottom */
-  /* Safari fix: allow grid items to size independently */
-  grid-auto-rows: min-content;
-}
-
-/* CarGurus: 3 equal columns - detect when wrapper contains thumbnail-image-3 */
-.thumbnail-wrapper:has(.thumbnail-image-3) {
-  grid-template-columns: repeat(3, 1fr);
-  grid-auto-rows: 1fr;
-  align-items: stretch;
-  align-content: stretch;
-}
-
-/* Individual thumbnail images - fill grid columns, maintain natural aspect ratios */
-.thumbnail-wrapper img,
-.thumbnail-image-1,
-.thumbnail-image-2,
-.thumbnail-image-3 {
-  width: 100%;
-  height: auto !important; /* prevents stretching from any global rule */
-  max-height: 100%;
-  display: block;
-  object-fit: contain; /* keep full image visible, no cropping */
-  align-self: end; /* bottom align each image */
-  background: transparent;
-  transition: all 0.4s cubic-bezier(0.33, 1, 0.68, 1);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.20);
-}
-
-/* Explicit aspect ratios based on width/height attributes to prevent layout shift */
-.thumbnail-image-1 {
-  aspect-ratio: 547 / 443;
-}
-
-.thumbnail-image-2 {
-  aspect-ratio: 257 / 475;
-  max-height: none !important;
-  height: auto !important;
-}
-
-.thumbnail-image-3 {
-  width: 100%;
-  height: 100% !important;
-  min-height: 0; /* allow grid item to shrink */
-  max-height: none;
-  object-fit: cover;
-  object-position: top center;
-  align-self: stretch;
-}
-
-/* Image-specific styling - border radius */
-.thumbnail-image-1 {
-  border-radius: 8px 8px 0 0;
-}
-
-.thumbnail-image-3 {
-  /* Scale border-radius responsively: 24px at 900px container = 2.67% */
-  border-radius: clamp(12px, 2.67cqi, 24px) clamp(12px, 2.67cqi, 24px) 0 0;
-}
-
-/* Legacy single thumbnail-image class (keep for backward compatibility) */
-.thumbnail-image {
-  padding: 0 3.555% 0 3.555%;
-  object-fit: contain;
-  display: block;
-  background: transparent;
-  transition: all 0.4s cubic-bezier(0.33, 1, 0.68, 1);
-}
-
-/* real images scale by width, retain aspect ratio */
-.work-preview img:not(.thumbnail-image) {
-  display: block;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  background: transparent;
-  transition: all 0.4s cubic-bezier(0.33, 1, 0.68, 1);
-}
-
-/* Safari-safe cover for specific cards without changing container */
-.work-preview.cargurus img:not(.thumbnail-image-3) {
-  /* Let intrinsic ratio drive height calculation in Safari */
-  height: auto;
-  min-height: 100%;
-  object-position: center;
+@media (prefers-reduced-motion: reduce) {
+  .work-preview {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
 }
 
 
@@ -973,32 +878,9 @@ html.ready .hero-inner .hero-image-wrap {
 
 .playground-card-image {
   position: relative;
-  border: 1px solid rgba(0, 0, 0, 0.05);
   border-radius: var(--radius-md);
   overflow: hidden;
   background: var(--color-surface);
-  transition: border-color 0.25s cubic-bezier(0.33, 1, 0.68, 1), box-shadow 0.25s cubic-bezier(0.33, 1, 0.68, 1);
-}
-
-.playground-card-image::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  z-index: 1;
-  background: rgba(0, 0, 0, 0.03);
-  border-radius: inherit;
-  pointer-events: none;
-  opacity: 0;
-  transition: opacity 0.3s cubic-bezier(0.33, 1, 0.68, 1);
-}
-
-.playground-card:hover .playground-card-image {
-  border-color: rgba(0, 0, 0, 0.15);
-  box-shadow: var(--shadow-light);
-}
-
-.playground-card:hover .playground-card-image::after {
-  opacity: 1;
 }
 
 /* 16:9 thumbnails (e.g. 2400×1350); scales with card max-width 438px */
@@ -1202,12 +1084,5 @@ html.ready .hero-inner .hero-image-wrap {
 
   .hamburger { display: block; }
   .header-nav { display: none; }
-
-  /* Remove card hover effects — card itself is the visual signal */
-  .work-preview-link:hover .work-preview.jumbocode { background: #C1DFD6; box-shadow: none; border-color: #F8F8F8; }
-  .work-preview-link:hover .work-preview.cargurus { background: #B8D5E6; box-shadow: none; border-color: #F8F8F8; }
-  .work-preview-link:hover .work-preview.bodegabay { background: #CFC9DF; box-shadow: none; border-color: #F8F8F8; }
-  .playground-card:hover .playground-card-image { border-color: rgba(0, 0, 0, 0.05); box-shadow: none; }
-  .playground-card:hover .playground-card-image::after { opacity: 0; }
 }
 
