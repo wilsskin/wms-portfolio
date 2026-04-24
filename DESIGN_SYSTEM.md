@@ -168,8 +168,21 @@ Never hardcode hex values for these. Always use the token. Never introduce new c
 :root {
   --shadow-light: 0 1px 3px rgba(0,0,0,0.1);   /* Status pill, icon link hover */
   --shadow-medium: 0 4px 8px rgba(0,0,0,0.15); /* Work card hover */
+
+  /* Three-layer shadow for large thumbnail cards (inspired by jakub.kr).
+     Scaled +50% over the source values; hover keeps geometry, bumps alphas +20%. */
+  --shadow-thumbnail:
+    0 0 0 1.5px rgba(0, 0, 0, 0.06),
+    0 1.5px 3px -1.5px rgba(0, 0, 0, 0.06),
+    0 3px 6px 0 rgba(0, 0, 0, 0.04);
+  --shadow-thumbnail-hover:
+    0 0 0 1.5px rgba(0, 0, 0, 0.072),
+    0 1.5px 3px -1.5px rgba(0, 0, 0, 0.072),
+    0 3px 6px 0 rgba(0, 0, 0, 0.048);
 }
 ```
+
+Apply via the `.shadow-thumbnail` utility class — it sets the default shadow and transitions to the hover variant on `:hover` (0.3s ease-out). Currently used on the three `.work-preview` images on the index page.
 
 ---
 
@@ -190,18 +203,6 @@ Never hardcode hex values for these. Always use the token. Never introduce new c
 All global text classes have `max-width: 504px`. This is the reading column. It keeps line length in the 45-75 character optimal range. Don't override it to make text wider.
 
 **Reference grid:** 768px content frame = 12 × 42px columns + 11 × 24px gutters. Reading column = 7 columns + 6 gutters = 504px.
-
-### Hero Section Padding
-
-Each page type uses a dedicated class to control hero vertical spacing. Never set `padding-top` directly on the hero section element — the class owns it.
-
-| Class                   | Page         | `padding-top` | `padding-top` (≤1032px) | `padding-bottom` |
-|-------------------------|--------------|---------------|-------------------------|------------------|
-| `.page-hero`            | index        | 96px          | 48px                    | 128px            |
-| `.page-hero-about`      | about        | 96px          | 48px                    | 32px             |
-| `.hero-case-section`    | case studies | 96px          | 48px                    | — (summary-section top padding provides gap) |
-
-> `.hero-case-section` is defined in `assets/case.css`, not `style.css`.
 
 ### Navigation Breakpoints & Collapsing Strategy
 
@@ -325,8 +326,9 @@ Each narrative section (Context, Problem, Goal, Solution, Process) follows the s
 | Bordered   | `1px solid var(--color-border-light)`                           | Work card base state, status pill, icon links    |
 | Elevated   | `border` + `var(--shadow-medium)` (0 4px 8px rgba(0,0,0,0.15))  | Work card hover state                            |
 | Light lift | `var(--shadow-light)` (0 1px 3px rgba(0,0,0,0.1))               | Status pill hover, icon link hover               |
+| Thumbnail  | `var(--shadow-thumbnail)` → `-hover` (three-layer, `.shadow-thumbnail` class) | Large thumbnail cards on index page              |
 
-This site has no layered multi-shadow system. One border, one hover shadow. Keep it that way.
+Single-shadow elevations (`--shadow-light`, `--shadow-medium`) are the default. The three-layer `--shadow-thumbnail` is reserved for large image cards where a more sculpted edge reads better — don't reach for it on small UI elements.
 
 ---
 

@@ -11,12 +11,38 @@
     window.addEventListener('load', function() {
       document.documentElement.classList.add('ready');
     });
-    
+
     // Safety timeout - show page even if some images are slow
     setTimeout(function() {
       document.documentElement.classList.add('ready');
     }, 300);
   }
+})();
+
+// Case study thumbnails: wait until decoded, then reveal all together so
+// CSS transition-delay produces a clean stagger. Prevents the flash where
+// the page becomes visible before the images have painted.
+(function() {
+  const thumbnails = document.querySelectorAll('.work-preview');
+  if (!thumbnails.length) return;
+
+  const reveal = () => thumbnails.forEach(img => img.classList.add('loaded'));
+
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    reveal();
+    return;
+  }
+
+  const decodes = Array.from(thumbnails).map(img => {
+    if (img.complete && img.naturalWidth > 0) return Promise.resolve();
+    return img.decode().catch(() => new Promise(resolve => {
+      img.addEventListener('load', resolve, { once: true });
+      img.addEventListener('error', resolve, { once: true });
+    }));
+  });
+
+  Promise.all(decodes).then(reveal);
+  setTimeout(reveal, 1200);
 })();
 
 const RESUME_URL = 'https://drive.google.com/file/d/1NfbM-w1RAvNZbPZS0g8rHo0r04S-XuhN/view?usp=sharing';

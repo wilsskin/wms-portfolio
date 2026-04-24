@@ -25,72 +25,6 @@
   margin-top: 2px;
 }
 
-.hero-image-container {
-  border: 1px solid;
-  border-radius: 16px;
-  padding: 0;
-  overflow: hidden;
-  cursor: default;
-  max-width: 768px;
-  width: 100%;
-  aspect-ratio: 900 / 475;
-  margin-left: auto;
-  margin-right: auto;
-  position: relative;
-}
-
-.hero-image-container.case-study-hero {
-  border: none;
-}
-
-.work-preview.case-study-hero {
-  cursor: default;
-}
-
-.case-image {
-  display: block;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  background: transparent;
-}
-
-/* Safari-safe cover: allow image to exceed natural height */
-.case-image.jumbocode-cover,
-.case-image.cargurus-cover {
-  height: auto;
-  min-height: 100%;
-  object-position: center;
-}
-
-/* Per-project hero padding helpers */
-.hero-image-container.cargurus-pad {
-  padding: 5.333% 5.333% 0 5.333%;
-  box-sizing: border-box;
-}
-
-.case-image.cargurus-cover {
-  object-position: center bottom;
-}
-
-.hero-image-container.jumbocode-pad {
-  padding: 5.333% 10.666% 0 10.666%;
-  box-sizing: border-box;
-}
-
-.case-image.jumbocode-cover {
-  object-position: center bottom;
-}
-
-.hero-image-container.bbl-pad {
-  padding: 5.333% 0 0 0;
-  box-sizing: border-box;
-}
-
-.case-image.bbl-cover {
-  object-position: center bottom;
-}
-
 /* Narrow reading container */
 .container-narrow {
   max-width: 504px;
@@ -825,10 +759,6 @@
 /* ---- Global Responsive Breakpoints ---- */
 
 @media (max-width: 700px) {
-  .hero-image-container {
-    padding: var(--spacing-small) var(--spacing-medium);
-  }
-
   .summary-content {
     flex-direction: column;
     gap: 28px;
@@ -895,7 +825,6 @@
 }
 
 @media (max-width: 480px) {
-  .hero-image-container { padding: 16px var(--spacing-small); }
   .comparison-container { padding: 16px var(--spacing-small); padding-bottom: 0; }
   .solution-card { padding: var(--spacing-small) var(--spacing-medium) 0 var(--spacing-medium); }
   .design-system-grid { flex-direction: column; gap: var(--spacing-small); }
@@ -907,16 +836,6 @@
    JUMBOCODE — Page-specific styles
    Add class="page-jumbocode" to <body> in jumbocode.html
    ========================================================= */
-
-.page-jumbocode .hero-image-container {
-  background: #81DBC2;
-  border-color: #32C89E;
-}
-
-.page-jumbocode .hero-image-container.case-study-hero {
-  background: #8ECAB9;
-  border: none;
-}
 
 .page-jumbocode .impact-number { color: #28A07E; }
 
@@ -961,16 +880,6 @@
    CARGURUS — Page-specific styles
    Add class="page-cargurus" to <body> in cargurus.html
    ========================================================= */
-
-.page-cargurus .hero-image-container {
-  background: #55A0CE;
-  border-color: #55A0CE;
-}
-
-.page-cargurus .hero-image-container.case-study-hero {
-  background: #7CB6D7;
-  border: none;
-}
 
 .page-cargurus .impact-number { color: #0079AF; }
 
@@ -1355,16 +1264,6 @@
    BODEGA BAY — Page-specific styles
    Add class="page-bodegabay" to <body> in bodegabay.html
    ========================================================= */
-
-.page-bodegabay .hero-image-container {
-  background: #7D70B0;
-  border-color: #6149A2;
-}
-
-.page-bodegabay .hero-image-container.case-study-hero {
-  background: #AA9ECB;
-  border: none;
-}
 
 .page-bodegabay .goal-number {
   border-color: #6149A2;
