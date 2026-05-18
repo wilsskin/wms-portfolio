@@ -80,7 +80,7 @@
   padding: 6px 12px;
   border-radius: 8px;
   font-size: var(--type-size-meta);
-  line-height: 1.33em;
+  line-height: 1.33;
   color: var(--color-text-primary);
 }
 
@@ -128,7 +128,7 @@
   align-items: center;
   font-weight: 400;
   font-size: var(--type-size-meta);
-  line-height: 1.33em;
+  line-height: 1.33;
   letter-spacing: 0.01em;
   color: var(--color-text-primary);
   text-decoration: underline;
@@ -200,7 +200,7 @@
 .impact-number {
   font-weight: 500;
   font-size: var(--type-size-heading);
-  line-height: 1.33em;
+  line-height: 1.33;
   margin: 0;
 }
 
@@ -472,13 +472,13 @@
   border-radius: 50%;
   font-weight: 500;
   font-size: var(--type-size-heading);
-  line-height: 1em;
+  line-height: 1.33;
 }
 
 .goal-title {
   font-weight: 500;
   font-size: var(--type-size-meta);
-  line-height: 1.33em;
+  line-height: 1.33;
   color: var(--color-text-primary);
   text-align: left;
   margin: 0;

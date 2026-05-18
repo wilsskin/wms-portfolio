@@ -200,7 +200,7 @@ main > section:last-of-type { padding-bottom: 0 !important; margin-bottom: 0 !im
 .design-process-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
 .design-process-card { display: flex; flex-direction: column; gap: 0px; max-width: 207px;}
 .design-process-card h4 { font-size: var(--type-size-body); font-weight: 400; color: var(--color-text-primary); margin: 0; }
-.design-process .design-process-card p { font-size: var(--type-size-meta); font-weight: 400; color: var(--color-text-secondary); line-height: 1.4; margin: 0; padding-top: 2px; }
+.design-process .design-process-card p { font-size: var(--type-size-meta); font-weight: 400; color: var(--color-text-secondary); line-height: 1.33; margin: 0; padding-top: 2px; }
 .design-process-tools { display: flex; gap: 4px; padding-bottom: 12px; }
 .design-process-tool-icon { display: inline-block; line-height: 0; }
 .design-process-tool-icon svg { display: block; width: 28px; height: 28px; }
@@ -339,10 +339,7 @@ main > section:last-of-type { padding-bottom: 0 !important; margin-bottom: 0 !im
 /* Mobile menu overlay */
 .mobile-menu-overlay {
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100vh;
+  inset: 0;
   background: var(--color-bg);
   z-index: 1000;
   opacity: 0;
@@ -1046,7 +1043,7 @@ html.ready .hero-inner .hero-image-wrap {
   .about-interests-caption { display: none; }
   .playground-row-pair { flex-direction: column; gap: var(--spacing-large); }
   .playground-row-pair .playground-card-link { max-width: none; }
-  .site-footer {padding: 144px 0 48px;}
+  .site-footer {padding: 144px 0 64px;}
 
   /* Hide "View →" link and expand tap target to full card */
   .thumbnail-view-link { display: none; }
@@ -1081,6 +1078,13 @@ html.ready .hero-inner .hero-image-wrap {
   .hero-image-wrap::after { transition-duration: 233ms; }
   .hero-caption { transition-duration: 117ms, 117ms; }
   .hero-image-wrap.hero-image--active .hero-caption { transition-duration: 233ms, 233ms; }
+
+  /* Lock hero to grayscale on mobile — no tap-to-toggle color reveal */
+  .hero-image,
+  .hero-image-wrap.hero-image--active .hero-image { filter: grayscale(100%); }
+  .hero-image-wrap::after,
+  .hero-image-wrap.hero-image--active::after { opacity: 0.18; }
+  .hero-image-wrap.hero-image--active .hero-caption { opacity: 0; transform: translateY(8px); }
 
   .hamburger { display: block; }
   .header-nav { display: none; }
