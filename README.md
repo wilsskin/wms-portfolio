@@ -8,7 +8,6 @@ Product design and engineering portfolio.
 ## What It Does
 - Presents case studies across mobile, e-commerce, and web design
 - Showcases playground projects built with React, Python, and AI APIs
-- Designed and implemented end-to-end — layout, copy, and code
 
 ## How It's Built
 Static site built with HTML, CSS, and vanilla JavaScript, deployed on Vercel. Navigation, hover interactions, and page transitions are handled in JS without a framework. Layout is built on a custom 12-column grid system documented in the repo.
