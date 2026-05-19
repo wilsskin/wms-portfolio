@@ -1,4 +1,4 @@
-# Wilson Skinner — Portfolio
+# Wilson Skinner's Portfolio
 Product design and engineering portfolio.
 
 [wilsonskinner.com](https://wilsonskinner.com)
